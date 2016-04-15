@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 [CustomEditor(typeof(Controller))]
 public class ControllerInspector : Editor {
@@ -11,23 +9,13 @@ public class ControllerInspector : Editor {
 
          if(GUILayout.Button("A*")) {
              var controller = (Controller)target;
-             controller.A_star();
+             controller.A_star(controller.From, controller.To, controller.Radius);
          }
 
          if (GUILayout.Button("Find neighbours")) {
              var controller = (Controller)target;
              controller.GetNearest();
          }
-    }
-
-    public void Show_A_Star(List<Informer> path) {
-        foreach (var node in path) {
-            Handles.color = Color.yellow;
-            Handles.CircleCap(0,
-                    node.transform.position,
-                    node.transform.rotation,
-                    1);
-        }
     }
 
     public void OnSceneGUI() {
