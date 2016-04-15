@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
-    <ProjectGuid>{F61EFFB5-7181-1B5A-23EC-7490DD66BD47}</ProjectGuid>
+    <RootNamespace>
+    </RootNamespace>
+    <ProjectGuid>{DDFBC18F-9396-3137-9CFE-DEB2CDB74636}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -45,32 +46,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Controller.cs" />
-     <Compile Include="Assets\ControllerInspector.cs" />
-     <Compile Include="Assets\Extensions.cs" />
-     <Compile Include="Assets\Informer.cs" />
-     <None Include="Assets\Plugins\Accord.xml" />
-     <None Include="Assets\Plugins\Accord.MachineLearning.xml" />
-     <None Include="Assets\Plugins\Accord.Math.xml" />
-     <None Include="Assets\Plugins\Accord.Statistics.xml" />
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="Accord">
- <HintPath>C:/Users/Лилия/Documents/Unity_Projects/Level1/Assets/Plugins/Accord.dll</HintPath>
- </Reference>
- <Reference Include="Accord.MachineLearning">
- <HintPath>C:/Users/Лилия/Documents/Unity_Projects/Level1/Assets/Plugins/Accord.MachineLearning.dll</HintPath>
- </Reference>
- <Reference Include="Accord.Math">
- <HintPath>C:/Users/Лилия/Documents/Unity_Projects/Level1/Assets/Plugins/Accord.Math.dll</HintPath>
- </Reference>
- <Reference Include="Accord.Statistics">
- <HintPath>C:/Users/Лилия/Documents/Unity_Projects/Level1/Assets/Plugins/Accord.Statistics.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\Scripts\Controller.cs" />
+    <Compile Include="Assets\Scripts\ControllerInspector.cs" />
+    <Compile Include="Assets\Scripts\Extensions.cs" />
+    <Compile Include="Assets\Scripts\Informer.cs" />
+    <None Include="Assets\Plugins\Accord.xml" />
+    <None Include="Assets\Plugins\Accord.MachineLearning.xml" />
+    <None Include="Assets\Plugins\Accord.Math.xml" />
+    <None Include="Assets\Plugins\Accord.Statistics.xml" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord">
+      <HintPath>C:/Users/Лилия/Documents/GitHub/Game/Assets/Plugins/Accord.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.MachineLearning">
+      <HintPath>C:/Users/Лилия/Documents/GitHub/Game/Assets/Plugins/Accord.MachineLearning.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math">
+      <HintPath>C:/Users/Лилия/Documents/GitHub/Game/Assets/Plugins/Accord.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Statistics">
+      <HintPath>C:/Users/Лилия/Documents/GitHub/Game/Assets/Plugins/Accord.Statistics.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -80,5 +81,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>
