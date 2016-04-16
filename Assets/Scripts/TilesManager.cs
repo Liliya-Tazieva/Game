@@ -1,18 +1,21 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class TilesManager: MonoBehaviour {
-
-    public List<GameObject> Prefabs;
+public class TilesManager : MonoBehaviour {
     public List<Color> Colors;
 
-    void Start() {
+    public List<GameObject> Prefabs;
+
+    private void Start() {
         Debug.Log("Initialize TilesManager");
     }
 
     public GameObject GetPrefab(Color color) {
-        int index = Colors.IndexOf(color);
+        var index = -1;
+        index = Colors.IndexOf(color);
+        if (index == -1) {
+            index = 0;
+        }
         return Prefabs[index];
     }
 }

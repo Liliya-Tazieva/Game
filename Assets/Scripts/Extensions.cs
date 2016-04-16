@@ -9,8 +9,7 @@ public static class Extensions {
     }
 
     public static float Metrics(this Informer from, Informer to) {
-
-        float metric = Mathf.Pow(to.transform.position.x - from.transform.position.x, 2);
+        var metric = Mathf.Pow(to.transform.position.x - from.transform.position.x, 2);
         metric += Mathf.Pow(to.transform.position.y - from.transform.position.y, 2);
         metric += Mathf.Pow(to.transform.position.z - from.transform.position.z, 2);
         metric = Mathf.Sqrt(metric);
