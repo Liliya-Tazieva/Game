@@ -7,7 +7,6 @@ public class TilesManager : MonoBehaviour {
     public List<GameObject> Prefabs;
 
     private void Start() {
-        Debug.Log("Initialize TilesManager");
     }
 
     public GameObject GetPrefab(Color color) {

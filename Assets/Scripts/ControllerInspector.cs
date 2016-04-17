@@ -11,7 +11,13 @@ public class ControllerInspector : Editor {
 
         if (GUILayout.Button("A*")) {
             var controller = (Controller) target;
-            controller.A_star(controller.From, controller.To, controller.Radius, false, true);
+            var nodes = new List<Informer>();
+            foreach (var kdTreeNode in controller.Tree) {
+                nodes.Add(kdTreeNode.Value);
+            }
+            var from = nodes.Find(x => x.transform.position == controller.From);
+            var to = nodes.Find(x => x.transform.position == controller.To);
+            controller.A_star(from, to, controller.Radius);
         }
 
         if (GUILayout.Button("Find neighbours")) {
@@ -21,6 +27,8 @@ public class ControllerInspector : Editor {
 
         if (GUILayout.Button("Test")) {
             var controller = (Controller) target;
+            controller.ShowPath = true;
+            controller.ShowVisited = true;
             var nodes = new List<Informer>();
             foreach (var kdTreeNode in controller.Tree) {
                 nodes.Add(kdTreeNode.Value);
@@ -31,7 +39,7 @@ public class ControllerInspector : Editor {
                 index2 = rnd.Next(0, nodes.Count - 1);
             Debug.Log("From " + nodes[index1].transform.position);
             Debug.Log("To " + nodes[index2].transform.position);
-            controller.A_star(nodes[index1], nodes[index2], 5, true, true);
+            controller.A_star(nodes[index1], nodes[index2], 5);
         }
     }
 }

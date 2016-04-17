@@ -1,28 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Accord.MachineLearning.Structures;
 using UnityEngine;
 
 public class Controller : MonoBehaviour {
-    public Informer From;
+    public Vector3 From;
+    public Vector3 To;
     public float Radius;
-    public Informer To;
+    public bool ShowVisited;
+    public bool ShowPath;
     public KDTree<Informer> Tree = new KDTree<Informer>(3);
 
     public void RegisterInformer(Informer informer) {
         var position = informer.transform.position;
-        Debug.Log(string.Format("Informer added at: {0}", position));
         Tree.Add(position.ToArray(), informer);
     }
 
     public void GetNearest() {
-        var nearest = Tree.Nearest(From.transform.position.ToArray(), Radius);
+        var nearest = Tree.Nearest(From.ToArray(), Radius);
         var aggregate = nearest.Aggregate("",
             (s, neibour) => string.Format("{1}\n{0}", s, neibour.Node.Value.gameObject.name));
         Debug.Log(aggregate);
     }
 
-    public List<Informer> A_star(Informer from, Informer to, float radius, bool showVisited, bool showPath) {
+    public List<Informer> A_star(Informer from, Informer to, float radius) {
         if (from == null || to == null) {
             Debug.Log("Can't run A*. Enter proper from and to parameters!");
             return null;
@@ -59,7 +61,6 @@ public class Controller : MonoBehaviour {
             Debug.Log("No path was found");
         } else {
             var path = new List<Informer>();
-            current.Visited = 0;
             path.Add(current);
             for (var i = 1; i < observed.Count; ++i) {
                 var temp = current;
@@ -70,15 +71,22 @@ public class Controller : MonoBehaviour {
                         var informerFrom = informer.Metrics(from);
                         if (tempFrom > informerFrom
                             || tempFrom <= informerFrom && flag == false) {
-                            informer.Visited = 0;
+                            if (flag) observed.Find(x => x.transform.position == temp.transform.position).Visited = (NodeState) 1;
+                            informer.Visited = (NodeState) 2;
                             temp = informer;
                             tempFrom = temp.Metrics(from);
                             flag = true;
                         }
                     }
                 }
+                if (!flag) {
+                    observed.Find(x => x.transform.position==current.transform.position).Visited = (NodeState) 2;
+                    path.RemoveAt(path.Count-1);
+                    current = path[path.Count - 1];
+                } else {
                 path.Add(temp);
                 current = temp;
+                }
                 if (current == from) {
                     break;
                 }
@@ -86,17 +94,16 @@ public class Controller : MonoBehaviour {
             for (var i = path.Count - 1; i >= 0; --i) {
                 finalPath.Add(path[i]);
             }
-
-            if (showVisited) {
+            if (ShowVisited) {
                 foreach (var t in observed) {
-                    var rend = t.GetComponent<Renderer>();
-                    rend.material.SetColor("_Color", Color.yellow);
+                    var component = t.GetComponent<Renderer>();
+                    component.material.SetColor("_Color", Color.yellow);
                 }
             }
-            if (showPath) {
+            if (ShowPath) {
                 foreach (var t in finalPath) {
-                    var rend = t.GetComponent<Renderer>();
-                    rend.material.SetColor("_Color", Color.red);
+                    var component = t.GetComponent<Renderer>();
+                    component.material.SetColor("_Color", Color.red);
                 }
             }
             var startRenderer = from.GetComponent<Renderer>();
