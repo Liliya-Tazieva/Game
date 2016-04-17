@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Accord.MachineLearning.Structures;
 using UnityEngine;
@@ -21,6 +22,141 @@ public class Controller : MonoBehaviour {
         var aggregate = nearest.Aggregate("",
             (s, neibour) => string.Format("{1}\n{0}", s, neibour.Node.Value.gameObject.name));
         Debug.Log(aggregate);
+    }
+
+    IEnumerator DebugA_Star() {
+        var nodes = new List<Informer>();
+        foreach (var kdTreeNode in NodesTree) {
+            nodes.Add(kdTreeNode.Value);
+        }
+        var from = nodes.Find(x => x.transform.position == From);
+        var to = nodes.Find(x => x.transform.position == To);
+        var radius = Radius;
+        var current = from;
+        current.Distance = current.Metrics(to);
+        current.Visited = (NodeState)1;
+        var observed = new List<Informer>();
+        observed.Add(current);
+        var componentStart = from.GetComponent<Renderer>();
+        componentStart.material.SetColor("_Color", Color.cyan);
+        yield return new WaitForSeconds(.1f);
+        while (current != to && current != null) {
+            var query = NodesTree.Nearest(current.transform.position.ToArray(), radius).ToList();
+            query =
+                query.Where(
+                    informer => informer != current && informer.IsObstacle != true && informer.Visited != (NodeState)1)
+                    .ToList();
+            foreach (var informer in query) {
+                if (informer.Visited == (NodeState)2) {
+                    informer.Distance = informer.Metrics(to);
+                    informer.Visited = 0;
+                    observed.Add(informer);
+                }
+                var component = informer.GetComponent<Renderer>();
+                component.material.SetColor("_Color", Color.yellow);
+            }
+            yield return new WaitForSeconds(.1f);
+            observed = observed.OrderBy(arg => arg.Visited).ThenBy(arg => arg.Distance).ToList();
+            if (observed[0].Visited != (NodeState)1) {
+                current = observed[0];
+                observed[0].Visited = (NodeState)1;
+            } else {
+                current = null;
+            }
+        }
+        var endRenderer = to.GetComponent<Renderer>();
+        endRenderer.material.SetColor("_Color", Color.magenta);
+        yield return new WaitForSeconds(.1f);
+
+        observed = observed.Where(informer => informer.Visited == (NodeState)1).ToList();
+        var finalPath = new List<Informer>();
+        if (current != to) {
+            Debug.Log("No path was found");
+        } else {
+            var path = new List<Informer>();
+            path.Add(current);
+            while (current != from) {
+                var temp = current;
+                var tempFrom = temp.Metrics(from);
+                var flag = false;
+                foreach (var informer in observed) {
+                    if (informer.Metrics(current) < 18.1 && informer.Visited == (NodeState)1) {
+                        var informerFrom = informer.Metrics(from);
+                        if (tempFrom > informerFrom
+                            || tempFrom <= informerFrom && flag == false) {
+                            if (flag)
+                                observed.Find(x => x.transform.position == temp.transform.position).Visited = (NodeState)1;
+                            informer.Visited = (NodeState)2;
+                            temp = informer;
+                            tempFrom = temp.Metrics(from);
+                            flag = true;
+                        }
+                    }
+                }
+                if (!flag) {
+                    observed.Find(x => x.transform.position == current.transform.position).Visited = (NodeState)2;
+                    path.RemoveAt(path.Count - 1);
+                    current = path[path.Count - 1];
+                } else {
+                    path.Add(temp);
+                    current = temp;
+                }
+            }
+            bool loopflag = false;
+            Informer loopstart = null;
+            for (var i = path.Count - 2; i > 0; --i) {
+                int intersection = NodesTree.Nearest(path[i].transform.position.ToArray(), radius)
+                    .ToList().Intersect(path).ToList().Count;
+                if (intersection > 3) {
+                    if (!loopflag) {
+                        loopflag = true;
+                        int index;
+                        if (i < path.Count - 1)
+                            index = i + 1;
+                        else
+                            index = i;
+                        loopstart = path[index];
+                        finalPath.Remove(loopstart);
+                        Debug.Log("Loopstart: " + loopstart.transform.position);
+                    }
+                } else {
+                    int index;
+                    if (i > 0)
+                        index = i - 1;
+                    else
+                        index = i;
+                    if (NodesTree.Nearest(path[index].transform.position.ToArray(), radius)
+                        .ToList().Intersect(path).ToList().Count <= 3) {
+                        if (loopflag) {
+                            loopflag = false;
+                            var loopend = path[i];
+                            Debug.Log("Loopend: " + loopend.transform.position);
+                            var loopescape = Extensions.LoopEscape(loopstart, loopend, NodesTree);
+                            finalPath.AddRange(loopescape);
+                            foreach (var t in loopescape) {
+                                var pathRenderer = t.GetComponent<Renderer>();
+                                pathRenderer.material.SetColor("_Color", Color.red);
+                                yield return new WaitForSeconds(.1f);
+                            }
+                            loopstart = null;
+                        } else {
+                            finalPath.Add(path[i]);
+                            if (path[i] != to) {
+                                var pathRenderer = path[i].GetComponent<Renderer>();
+                                pathRenderer.material.SetColor("_Color", Color.red);
+                                yield return new WaitForSeconds(.1f);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    void Update() {
+        if (Input.GetKeyDown("a")) {
+            StartCoroutine("DebugA_Star");
+        }
     }
 
     public List<Informer> A_star(Informer from, Informer to, float radius) {

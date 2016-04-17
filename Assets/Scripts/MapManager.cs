@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class MapManager : MonoBehaviour {
     public Texture2D Map;
@@ -6,6 +7,10 @@ public class MapManager : MonoBehaviour {
 
     // Use this for initialization
     private void Start() {
+        
+    }
+
+    IEnumerator InitializeMap() {
         for (var i = 0; i < Map.height; ++i) {
             for (var j = 0; j < Map.width; ++j) {
                 var color = Map.GetPixel(i, j);
@@ -17,7 +22,14 @@ public class MapManager : MonoBehaviour {
                         temp.transform.parent = gameObject.transform;
                     }
                 }
+                if (j % 15 == 0) yield return null;
             }
+        }
+    }
+
+    void Update() {
+        if (Input.GetKeyDown("m")) {
+            StartCoroutine("InitializeMap");
         }
     }
 }
