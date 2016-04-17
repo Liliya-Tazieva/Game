@@ -2114,7 +2114,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.ComparisonExtensions.ToString(Accord.MachineLearning.DecisionTrees.ComparisonKind)">
+      name="M:Accord.MachineLearning.DecisionTrees.ComparisonExtensions.ToString(Accord.MachineLearning.DecisionNodesTrees.ComparisonKind)">
       <summary>
         Returns a <see cref="T:System.String" /> that represents this instance.
       </summary>
@@ -2142,7 +2142,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.DecisionBranchNodeCollection.#ctor(Accord.MachineLearning.DecisionTrees.DecisionNode)">
+      name="M:Accord.MachineLearning.DecisionTrees.DecisionBranchNodeCollection.#ctor(Accord.MachineLearning.DecisionNodesTrees.DecisionNode)">
       <summary>
         Initializes a new instance of the
         <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionBranchNodeCollection" /> class.
@@ -2155,7 +2155,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.DecisionBranchNodeCollection.#ctor(System.Int32,Accord.MachineLearning.DecisionTrees.DecisionNode[])">
+      name="M:Accord.MachineLearning.DecisionTrees.DecisionBranchNodeCollection.#ctor(System.Int32,Accord.MachineLearning.DecisionNodesTrees.DecisionNode[])">
       <summary>
         Initializes a new instance of the
         <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionBranchNodeCollection" /> class.
@@ -2171,7 +2171,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.DecisionBranchNodeCollection.AddRange(System.Collections.Generic.IEnumerable{Accord.MachineLearning.DecisionTrees.DecisionNode})">
+      name="M:Accord.MachineLearning.DecisionTrees.DecisionBranchNodeCollection.AddRange(System.Collections.Generic.IEnumerable{Accord.MachineLearning.DecisionNodesTrees.DecisionNode})">
       <summary>
         Adds the elements of the specified collection to the end of the collection.
       </summary>
@@ -2204,7 +2204,7 @@
     <member name="T:Accord.MachineLearning.DecisionTrees.Learning.NamespaceDoc">
       <summary>
         Contains learning algorithms for inducing
-        <see cref="N:Accord.MachineLearning.DecisionTrees">Decision Trees</see>.
+        <see cref="N:Accord.MachineLearning.DecisionNodesTrees">Decision Trees</see>.
       </summary>
 
       <seealso cref="N:Accord.MachineLearning.DecisionTrees" />
@@ -2244,7 +2244,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.Antecedent.#ctor(System.Int32,Accord.MachineLearning.DecisionTrees.ComparisonKind,System.Double)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.Antecedent.#ctor(System.Int32,Accord.MachineLearning.DecisionNodesTrees.ComparisonKind,System.Double)">
       <summary>
         Creates a new instance of the <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.Antecedent" /> class.
       </summary>
@@ -2274,7 +2274,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.Antecedent.Equals(Accord.MachineLearning.DecisionTrees.Rules.Antecedent)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.Antecedent.Equals(Accord.MachineLearning.DecisionNodesTrees.Rules.Antecedent)">
       <summary>
         Determines whether the specified <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.Antecedent" />
         is equal to this instance.
@@ -2324,14 +2324,14 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.Antecedent.op_Equality(Accord.MachineLearning.DecisionTrees.Rules.Antecedent,Accord.MachineLearning.DecisionTrees.Rules.Antecedent)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.Antecedent.op_Equality(Accord.MachineLearning.DecisionNodesTrees.Rules.Antecedent,Accord.MachineLearning.DecisionNodesTrees.Rules.Antecedent)">
       <summary>
         Implements the operator ==.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.Antecedent.op_Inequality(Accord.MachineLearning.DecisionTrees.Rules.Antecedent,Accord.MachineLearning.DecisionTrees.Rules.Antecedent)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.Antecedent.op_Inequality(Accord.MachineLearning.DecisionNodesTrees.Rules.Antecedent,Accord.MachineLearning.DecisionNodesTrees.Rules.Antecedent)">
       <summary>
         Implements the operator !=.
       </summary>
@@ -2372,7 +2372,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet.#ctor(System.Collections.Generic.IEnumerable{Accord.MachineLearning.DecisionTrees.Rules.DecisionRule})">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet.#ctor(System.Collections.Generic.IEnumerable{Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule})">
       <summary>
         Initializes a new instance of the <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet" />
         class.
@@ -2382,13 +2382,13 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet.FromDecisionTree(Accord.MachineLearning.DecisionTrees.DecisionTree)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet.FromDecisionNodesTree(Accord.MachineLearning.DecisionNodesTrees.DecisionNodesTree)">
       <summary>
         Creates a new <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet" /> from a
-        <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionTree" />.
+        <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTree" />.
       </summary>
 
-      <param name="tree">A <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionTree" />.</param>
+      <param name="tree">A <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTree" />.</param>
 
       <returns>
         A <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet" /> that is completely
@@ -2410,7 +2410,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet.Add(Accord.MachineLearning.DecisionTrees.Rules.DecisionRule)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet.Add(Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule)">
       <summary>
         Adds a new <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule" /> to the set.
       </summary>
@@ -2419,7 +2419,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet.AddRange(System.Collections.Generic.IEnumerable{Accord.MachineLearning.DecisionTrees.Rules.DecisionRule})">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet.AddRange(System.Collections.Generic.IEnumerable{Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule})">
       <summary>
         Adds a collection of new <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule" />s to the set.
       </summary>
@@ -2434,7 +2434,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet.Remove(Accord.MachineLearning.DecisionTrees.Rules.DecisionRule)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet.Remove(Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule)">
       <summary>
         Removes a given rule from the set.
       </summary>
@@ -2519,7 +2519,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.#ctor(System.Collections.Generic.IList{Accord.MachineLearning.DecisionTrees.DecisionVariable},System.Double,Accord.MachineLearning.DecisionTrees.Rules.Antecedent[])">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.#ctor(System.Collections.Generic.IList{Accord.MachineLearning.DecisionNodesTrees.DecisionVariable},System.Double,Accord.MachineLearning.DecisionNodesTrees.Rules.Antecedent[])">
       <summary>
         Initializes a new instance of the <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule" />
         class.
@@ -2531,7 +2531,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.#ctor(System.Collections.Generic.IList{Accord.MachineLearning.DecisionTrees.DecisionVariable},System.Double,System.Collections.Generic.IEnumerable{Accord.MachineLearning.DecisionTrees.Rules.Antecedent})">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.#ctor(System.Collections.Generic.IList{Accord.MachineLearning.DecisionNodesTrees.DecisionVariable},System.Double,System.Collections.Generic.IEnumerable{Accord.MachineLearning.DecisionNodesTrees.Rules.Antecedent})">
       <summary>
         Initializes a new instance of the <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule" />
         class.
@@ -2543,7 +2543,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.#ctor(System.Double,Accord.MachineLearning.DecisionTrees.Rules.Antecedent[])">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.#ctor(System.Double,Accord.MachineLearning.DecisionNodesTrees.Rules.Antecedent[])">
       <summary>
         Initializes a new instance of the <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule" />
         class.
@@ -2567,17 +2567,17 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.FromNode(Accord.MachineLearning.DecisionTrees.DecisionNode)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.FromNode(Accord.MachineLearning.DecisionNodesTrees.DecisionNode)">
       <summary>
         Creates a new <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule" /> from a
-        <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionTree" />'s
+        <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTree" />'s
         <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNode" />. This node must be a leaf, cannot be the root, and
         should have one output value.
       </summary>
 
       <param name="node">
         A <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNode" /> from a
-        <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionTree" />.
+        <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTree" />.
       </param>
 
       <returns>
@@ -2587,7 +2587,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.IsInconsistentWith(Accord.MachineLearning.DecisionTrees.Rules.DecisionRule)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.IsInconsistentWith(Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule)">
       <summary>
         Gets whether this rule and another rule have
         the same antecedents but different outputs.
@@ -2701,7 +2701,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.Equals(Accord.MachineLearning.DecisionTrees.Rules.DecisionRule)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.Equals(Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule)">
       <summary>
         Determines whether the specified <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule" /> is equal to this instance.
       </summary>
@@ -2715,35 +2715,35 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.CompareTo(Accord.MachineLearning.DecisionTrees.Rules.DecisionRule)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.CompareTo(Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule)">
       <summary>
         Compares this instance to another <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule" />.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.op_LessThan(Accord.MachineLearning.DecisionTrees.Rules.DecisionRule,Accord.MachineLearning.DecisionTrees.Rules.DecisionRule)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.op_LessThan(Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule,Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule)">
       <summary>
         Implements the operator &lt;.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.op_GreaterThan(Accord.MachineLearning.DecisionTrees.Rules.DecisionRule,Accord.MachineLearning.DecisionTrees.Rules.DecisionRule)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.op_GreaterThan(Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule,Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule)">
       <summary>
         Implements the operator &gt;.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.op_Equality(Accord.MachineLearning.DecisionTrees.Rules.DecisionRule,Accord.MachineLearning.DecisionTrees.Rules.DecisionRule)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.op_Equality(Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule,Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule)">
       <summary>
         Implements the operator ==.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.op_Inequality(Accord.MachineLearning.DecisionTrees.Rules.DecisionRule,Accord.MachineLearning.DecisionTrees.Rules.DecisionRule)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.DecisionRule.op_Inequality(Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule,Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionRule)">
       <summary>
         Implements the operator !=.
       </summary>
@@ -2776,21 +2776,21 @@
       </summary>
 
     </member>
-    <member name="T:Accord.MachineLearning.DecisionTrees.DecisionTreeWriter">
+    <member name="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTreeWriter">
       <summary>
         Decision Tree C# Writer.
       </summary>
 
     </member>
-    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionTreeWriter.#ctor(System.IO.TextWriter)">
+    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTreeWriter.#ctor(System.IO.TextWriter)">
       <summary>
-        Initializes a new instance of the <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionTreeWriter" />
+        Initializes a new instance of the <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTreeWriter" />
         class.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.DecisionTreeWriter.Write(Accord.MachineLearning.DecisionTrees.DecisionTree,System.String)">
+      name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTreeWriter.Write(Accord.MachineLearning.DecisionNodesTrees.DecisionNodesTree,System.String)">
       <summary>
         Creates a C# code for the tree.
       </summary>
@@ -2803,7 +2803,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Pruning.ReducedErrorPruning.#ctor(Accord.MachineLearning.DecisionTrees.DecisionTree,System.Double[][],System.Int32[])">
+      name="M:Accord.MachineLearning.DecisionTrees.Pruning.ReducedErrorPruning.#ctor(Accord.MachineLearning.DecisionNodesTrees.DecisionNodesTree,System.Double[][],System.Int32[])">
       <summary>
         Initializes a new instance of the
         <see cref="T:Accord.MachineLearning.DecisionTrees.Pruning.ReducedErrorPruning" /> class.
@@ -2864,7 +2864,7 @@
 
 
           // Create the decision tree
-          DecisionTree tree = new DecisionTree( ... );
+          DecisionTree tree = new DecisionNodesTree( ... );
 
           // Learn our tree using the training data
           C45Learning c45 = new C45Learning(tree);
@@ -2894,7 +2894,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Pruning.ErrorBasedPruning.#ctor(Accord.MachineLearning.DecisionTrees.DecisionTree,System.Double[][],System.Int32[])">
+      name="M:Accord.MachineLearning.DecisionTrees.Pruning.ErrorBasedPruning.#ctor(Accord.MachineLearning.DecisionNodesTrees.DecisionNodesTree,System.Double[][],System.Int32[])">
       <summary>
         Initializes a new instance of the
         <see cref="T:Accord.MachineLearning.DecisionTrees.Pruning.ErrorBasedPruning" /> class.
@@ -2912,7 +2912,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Pruning.ErrorBasedPruning.compute(Accord.MachineLearning.DecisionTrees.DecisionNode)">
+      name="M:Accord.MachineLearning.DecisionTrees.Pruning.ErrorBasedPruning.compute(Accord.MachineLearning.DecisionNodesTrees.DecisionNode)">
       <summary>
         Attempts to prune a node's subtrees.
       </summary>
@@ -2934,7 +2934,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Rules.Simplification.#ctor(Accord.MachineLearning.DecisionTrees.Rules.DecisionSet)">
+      name="M:Accord.MachineLearning.DecisionTrees.Rules.Simplification.#ctor(Accord.MachineLearning.DecisionNodesTrees.Rules.DecisionSet)">
       <summary>
         Initializes a new instance of the <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.Simplification" />
         class.
@@ -5438,7 +5438,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.DecisionVariable.#ctor(System.String,Accord.MachineLearning.DecisionTrees.DecisionVariableKind)">
+      name="M:Accord.MachineLearning.DecisionTrees.DecisionVariable.#ctor(System.String,Accord.MachineLearning.DecisionNodesTrees.DecisionVariableKind)">
       <summary>
         Creates a new <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionVariable" />.
       </summary>
@@ -5540,7 +5540,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.DecisionVariableCollection.#ctor(System.Collections.Generic.IList{Accord.MachineLearning.DecisionTrees.DecisionVariable})">
+      name="M:Accord.MachineLearning.DecisionTrees.DecisionVariableCollection.#ctor(System.Collections.Generic.IList{Accord.MachineLearning.DecisionNodesTrees.DecisionVariable})">
       <summary>
         Initializes a new instance of the
         <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionVariableCollection" /> class.
@@ -5552,7 +5552,7 @@
     <member name="T:Accord.MachineLearning.DecisionTrees.Learning.C45Learning">
       <summary>
         C4.5 Learning algorithm for
-        <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionTree">Decision Trees</see>.
+        <see cref="T:Accord.MachineLearning.DecisionNodesTrees.DecisionNodesTree">Decision Trees</see>.
       </summary>
 
       <remarks>
@@ -5666,7 +5666,7 @@
           // From now on, we can start creating the decision tree.
           //
           var attributes = DecisionVariable.FromCodebook(codebook, inputColumns);
-          DecisionTree tree = new DecisionTree(attributes, outputClasses: 5);
+          DecisionTree tree = new DecisionNodesTree(attributes, outputClasses: 5);
 
 
           // Now, let's create the C4.5 algorithm
@@ -5696,7 +5696,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Learning.C45Learning.#ctor(Accord.MachineLearning.DecisionTrees.DecisionTree)">
+      name="M:Accord.MachineLearning.DecisionTrees.Learning.C45Learning.#ctor(Accord.MachineLearning.DecisionNodesTrees.DecisionNodesTree)">
       <summary>
         Creates a new C4.5 learning algorithm.
       </summary>
@@ -5773,7 +5773,7 @@
     <member name="T:Accord.MachineLearning.DecisionTrees.Learning.ID3Learning">
       <summary>
         ID3 (Iterative Dichotomizer 3) learning algorithm
-        for <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionTree">Decision Trees</see>.
+        for <see cref="T:Accord.MachineLearning.DecisionNodesTrees.DecisionNodesTree">Decision Trees</see>.
       </summary>
 
       <remarks>
@@ -5884,7 +5884,7 @@
           int classCount = 2; // 2 possible output values for playing tennis: yes or no
 
           //Create the decision tree using the attributes and classes
-          DecisionTree tree = new DecisionTree(attributes, classCount);
+          DecisionTree tree = new DecisionNodesTree(attributes, classCount);
         </code>
 
         <para>
@@ -5904,7 +5904,7 @@
 
         <para>
           The tree can now be queried for new examples through its
-          <see cref="M:Accord.MachineLearning.DecisionTrees.DecisionTree.Compute(System.Double[])" />
+          <see cref="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.Compute(System.Double[])" />
           method. For example, we can use:
         </para>
 
@@ -5922,7 +5922,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.Learning.ID3Learning.#ctor(Accord.MachineLearning.DecisionTrees.DecisionTree)">
+      name="M:Accord.MachineLearning.DecisionTrees.Learning.ID3Learning.#ctor(Accord.MachineLearning.DecisionNodesTrees.DecisionNodesTree)">
       <summary>
         Creates a new ID3 learning algorithm.
       </summary>
@@ -5980,7 +5980,7 @@
       </summary>
 
     </member>
-    <member name="T:Accord.MachineLearning.DecisionTrees.DecisionTree">
+    <member name="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTree">
       <summary>
         Decision tree.
       </summary>
@@ -6002,9 +6002,9 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.#ctor(System.Collections.Generic.IList{Accord.MachineLearning.DecisionTrees.DecisionVariable},System.Int32)">
+      name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.#ctor(System.Collections.Generic.IList{Accord.MachineLearning.DecisionNodesTrees.DecisionVariable},System.Int32)">
       <summary>
-        Creates a new <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionTree" /> to process
+        Creates a new <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTree" /> to process
         the given <paramref name="inputs" /> and the given
         number of possible <paramref name="classes" />.
       </summary>
@@ -6013,7 +6013,7 @@
       <param name="classes">The number of possible output classes for the given attributes.</param>
 
     </member>
-    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.Compute(System.Int32[])">
+    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.Compute(System.Int32[])">
       <summary>
         Computes the decision for a given input.
       </summary>
@@ -6023,7 +6023,7 @@
       <returns>A predicted class for the given input.</returns>
 
     </member>
-    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.Compute(System.Double[])">
+    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.Compute(System.Double[])">
       <summary>
         Computes the tree decision for a given input.
       </summary>
@@ -6034,7 +6034,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.Compute(System.Double[],Accord.MachineLearning.DecisionTrees.DecisionNode)">
+      name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.Compute(System.Double[],Accord.MachineLearning.DecisionNodesTrees.DecisionNode)">
       <summary>
         Computes the tree decision for a given input.
       </summary>
@@ -6045,7 +6045,7 @@
       <returns>A predicted class for the given input.</returns>
 
     </member>
-    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.GetEnumerator">
+    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.GetEnumerator">
       <summary>
         Returns an enumerator that iterates through the tree.
       </summary>
@@ -6057,10 +6057,10 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.Traverse(Accord.MachineLearning.DecisionTrees.DecisionTreeTraversalMethod)">
+      name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.Traverse(Accord.MachineLearning.DecisionNodesTrees.DecisionNodesTreeTraversalMethod)">
       <summary>
         Traverse the tree using a
-        <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionTreeTraversal">
+        <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTreeTraversal">
           tree
           traversal method
         </see>
@@ -6069,7 +6069,7 @@
 
       <param name="method">
         The tree traversal method. Common methods are
-        available in the <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionTree.TreeTraversal" />static class.
+        available in the <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.NodesTreeTraversal" />static class.
       </param>
 
       <returns>
@@ -6079,10 +6079,10 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.Traverse(Accord.MachineLearning.DecisionTrees.DecisionTreeTraversalMethod,Accord.MachineLearning.DecisionTrees.DecisionNode)">
+      name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.Traverse(Accord.MachineLearning.DecisionNodesTrees.DecisionNodesTreeTraversalMethod,Accord.MachineLearning.DecisionNodesTrees.DecisionNode)">
       <summary>
         Traverse a subtree using a
-        <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionTreeTraversal">
+        <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTreeTraversal">
           tree
           traversal method
         </see>
@@ -6091,7 +6091,7 @@
 
       <param name="method">
         The tree traversal method. Common methods are
-        available in the <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionTree.TreeTraversal" />static class.
+        available in the <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.NodesTreeTraversal" />static class.
       </param>
       <param name="subtree">The root of the subtree to be traversed.</param>
 
@@ -6101,7 +6101,7 @@
       </returns>
 
     </member>
-    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.ToRules">
+    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.ToRules">
       <summary>
         Transforms the tree into a set of
         <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet">decision rules</see>.
@@ -6110,7 +6110,7 @@
       <returns>A <see cref="T:Accord.MachineLearning.DecisionTrees.Rules.DecisionSet" /> created from this tree.</returns>
 
     </member>
-    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.ToCode(System.String)">
+    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.ToCode(System.String)">
       <summary>
         Generates a C# class implementing the decision tree.
       </summary>
@@ -6120,7 +6120,7 @@
       <returns>A string containing the generated class.</returns>
 
     </member>
-    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.ToCode(System.IO.TextWriter,System.String)">
+    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.ToCode(System.IO.TextWriter,System.String)">
       <summary>
         Generates a C# class implementing the decision tree.
       </summary>
@@ -6129,7 +6129,7 @@
       <param name="writer">The <see cref="T:System.IO.TextWriter" /> where the class should be written.</param>
 
     </member>
-    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.GetHeight">
+    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.GetHeight">
       <summary>
         Computes the height of the tree, defined as the
         greatest distance (in links) between the tree's
@@ -6139,7 +6139,7 @@
       <returns>The tree's height.</returns>
 
     </member>
-    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.Save(System.String)">
+    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.Save(System.String)">
       <summary>
         Loads a tree from a file.
       </summary>
@@ -6149,7 +6149,7 @@
       <returns>The deserialized tree.</returns>
 
     </member>
-    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.Save(System.IO.Stream)">
+    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.Save(System.IO.Stream)">
       <summary>
         Saves the tree to a stream.
       </summary>
@@ -6157,7 +6157,7 @@
       <param name="stream">The stream to which the tree is to be serialized.</param>
 
     </member>
-    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.Load(System.IO.Stream)">
+    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.Load(System.IO.Stream)">
       <summary>
         Loads a tree from a stream.
       </summary>
@@ -6167,7 +6167,7 @@
       <returns>The deserialized tree.</returns>
 
     </member>
-    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionTree.Load(System.String)">
+    <member name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.Load(System.String)">
       <summary>
         Loads a tree from a file.
       </summary>
@@ -6177,26 +6177,26 @@
       <returns>The deserialized tree.</returns>
 
     </member>
-    <member name="P:Accord.MachineLearning.DecisionTrees.DecisionTree.Root">
+    <member name="P:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.Root">
       <summary>
         Gets or sets the root node for this tree.
       </summary>
 
     </member>
-    <member name="P:Accord.MachineLearning.DecisionTrees.DecisionTree.Attributes">
+    <member name="P:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.Attributes">
       <summary>
         Gets the collection of attributes processed by this tree.
       </summary>
 
     </member>
-    <member name="P:Accord.MachineLearning.DecisionTrees.DecisionTree.OutputClasses">
+    <member name="P:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.OutputClasses">
       <summary>
         Gets the number of distinct output
         classes classified by this tree.
       </summary>
 
     </member>
-    <member name="P:Accord.MachineLearning.DecisionTrees.DecisionTree.InputCount">
+    <member name="P:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.InputCount">
       <summary>
         Gets the number of input attributes
         expected by this tree.
@@ -6217,11 +6217,11 @@
         contain the output value which should be decided for when the node is reached.
       </remarks>
 
-      <seealso cref="T:Accord.MachineLearning.DecisionTrees.DecisionTree" />
+      <seealso cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTree" />
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.DecisionNode.#ctor(Accord.MachineLearning.DecisionTrees.DecisionTree)">
+      name="M:Accord.MachineLearning.DecisionTrees.DecisionNode.#ctor(Accord.MachineLearning.DecisionNodesTrees.DecisionNodesTree)">
       <summary>
         Creates a new decision node.
       </summary>
@@ -6332,7 +6332,7 @@
     </member>
     <member name="P:Accord.MachineLearning.DecisionTrees.DecisionNode.Owner">
       <summary>
-        Gets the <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionTree" /> containing this node.
+        Gets the <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTree" /> containing this node.
       </summary>
 
     </member>
@@ -7143,7 +7143,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.KNearestNeighbors.FromTree(Accord.MachineLearning.Structures.KDTree{System.Int32},System.Int32,System.Int32,System.Double[][],System.Int32[])">
+      name="M:Accord.MachineLearning.KNearestNeighbors.FromTree(Accord.MachineLearning.Structures.KDNodesTree{System.Int32},System.Int32,System.Int32,System.Double[][],System.Int32[])">
       <summary>
         Creates a new <see cref="T:Accord.MachineLearning.KNearestNeighbors" /> algorithm from an existing
         <see cref="T:Accord.MachineLearning.Structures.KDTree`1" />. The tree must have been created using the input
@@ -8628,28 +8628,28 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeTraversal.BreadthFirst``1(Accord.MachineLearning.Structures.KDTree{``0})">
+      name="M:Accord.MachineLearning.Structures.KDTreeTraversal.BreadthFirst``1(Accord.MachineLearning.Structures.KDNodesTree{``0})">
       <summary>
         Breadth-first tree traversal method.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeTraversal.PreOrder``1(Accord.MachineLearning.Structures.KDTree{``0})">
+      name="M:Accord.MachineLearning.Structures.KDTreeTraversal.PreOrder``1(Accord.MachineLearning.Structures.KDNodesTree{``0})">
       <summary>
         Pre-order tree traversal method.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeTraversal.InOrder``1(Accord.MachineLearning.Structures.KDTree{``0})">
+      name="M:Accord.MachineLearning.Structures.KDTreeTraversal.InOrder``1(Accord.MachineLearning.Structures.KDNodesTree{``0})">
       <summary>
         In-order tree traversal method.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeTraversal.PostOrder``1(Accord.MachineLearning.Structures.KDTree{``0})">
+      name="M:Accord.MachineLearning.Structures.KDTreeTraversal.PostOrder``1(Accord.MachineLearning.Structures.KDNodesTree{``0})">
       <summary>
         Post-order tree traversal method.
       </summary>
@@ -8664,7 +8664,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeNodeDistance`1.#ctor(Accord.MachineLearning.Structures.KDTreeNode{`0},System.Double)">
+      name="M:Accord.MachineLearning.Structures.KDTreeNodeDistance`1.#ctor(Accord.MachineLearning.Structures.KDNodesTreeNode{`0},System.Double)">
       <summary>
         Creates a new <see cref="T:Accord.MachineLearning.Structures.KDTreeNodeDistance`1" />.
       </summary>
@@ -8702,35 +8702,35 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeNodeDistance`1.op_Equality(Accord.MachineLearning.Structures.KDTreeNodeDistance{`0},Accord.MachineLearning.Structures.KDTreeNodeDistance{`0})">
+      name="M:Accord.MachineLearning.Structures.KDTreeNodeDistance`1.op_Equality(Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0},Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0})">
       <summary>
         Implements the equality operator.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeNodeDistance`1.op_Inequality(Accord.MachineLearning.Structures.KDTreeNodeDistance{`0},Accord.MachineLearning.Structures.KDTreeNodeDistance{`0})">
+      name="M:Accord.MachineLearning.Structures.KDTreeNodeDistance`1.op_Inequality(Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0},Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0})">
       <summary>
         Implements the inequality operator.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeNodeDistance`1.op_LessThan(Accord.MachineLearning.Structures.KDTreeNodeDistance{`0},Accord.MachineLearning.Structures.KDTreeNodeDistance{`0})">
+      name="M:Accord.MachineLearning.Structures.KDTreeNodeDistance`1.op_LessThan(Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0},Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0})">
       <summary>
         Implements the lesser than operator.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeNodeDistance`1.op_GreaterThan(Accord.MachineLearning.Structures.KDTreeNodeDistance{`0},Accord.MachineLearning.Structures.KDTreeNodeDistance{`0})">
+      name="M:Accord.MachineLearning.Structures.KDTreeNodeDistance`1.op_GreaterThan(Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0},Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0})">
       <summary>
         Implements the greater than operator.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeNodeDistance`1.Equals(Accord.MachineLearning.Structures.KDTreeNodeDistance{`0})">
+      name="M:Accord.MachineLearning.Structures.KDTreeNodeDistance`1.Equals(Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0})">
       <summary>
         Determines whether the specified <see cref="T:Accord.MachineLearning.Structures.KDTreeNodeDistance`1" />
         is equal to this instance.
@@ -8748,7 +8748,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeNodeDistance`1.CompareTo(Accord.MachineLearning.Structures.KDTreeNodeDistance{`0})">
+      name="M:Accord.MachineLearning.Structures.KDTreeNodeDistance`1.CompareTo(Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0})">
       <summary>
         Compares this instance to another node, returning an integer
         indicating whether this instance has a distance that is less
@@ -8844,7 +8844,7 @@
 
 
           // To create a tree from a set of points, we use
-          KDTree&lt;int&gt; tree = KDTree.FromData&lt;int&gt;(points);
+          KDTree&lt;int&gt; tree = KDNodesTree.FromData&lt;int&gt;(points);
 
           // Now we can manually navigate the tree
           KDTreeNode&lt;int&gt; node = tree.Root.Left.Right;
@@ -8932,7 +8932,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTree`1.#ctor(System.Int32,Accord.MachineLearning.Structures.KDTreeNode{`0})">
+      name="M:Accord.MachineLearning.Structures.KDTree`1.#ctor(System.Int32,Accord.MachineLearning.Structures.KDNodesTreeNode{`0})">
       <summary>
         Creates a new <see cref="T:Accord.MachineLearning.Structures.KDTree`1" />.
       </summary>
@@ -8942,7 +8942,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTree`1.#ctor(System.Int32,Accord.MachineLearning.Structures.KDTreeNode{`0},System.Int32,System.Int32)">
+      name="M:Accord.MachineLearning.Structures.KDTree`1.#ctor(System.Int32,Accord.MachineLearning.Structures.KDNodesTreeNode{`0},System.Int32,System.Int32)">
       <summary>
         Creates a new <see cref="T:Accord.MachineLearning.Structures.KDTree`1" />.
       </summary>
@@ -9142,14 +9142,14 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTree`1.nearest(Accord.MachineLearning.Structures.KDTreeNode{`0},System.Double[],System.Double,System.Collections.Generic.ICollection{Accord.MachineLearning.Structures.KDTreeNodeDistance{`0}})">
+      name="M:Accord.MachineLearning.Structures.KDTree`1.nearest(Accord.MachineLearning.Structures.KDNodesTreeNode{`0},System.Double[],System.Double,System.Collections.Generic.ICollection{Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0}})">
       <summary>
         Radius search.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTree`1.nearest(Accord.MachineLearning.Structures.KDTreeNode{`0},System.Double[],Accord.MachineLearning.Structures.KDTreeNodeCollection{`0})">
+      name="M:Accord.MachineLearning.Structures.KDTree`1.nearest(Accord.MachineLearning.Structures.KDNodesTreeNode{`0},System.Double[],Accord.MachineLearning.Structures.KDNodesTreeNodeCollection{`0})">
       <summary>
         k-nearest neighbors search.
       </summary>
@@ -9162,7 +9162,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTree`1.CopyTo(Accord.MachineLearning.Structures.KDTreeNode{`0}[],System.Int32)">
+      name="M:Accord.MachineLearning.Structures.KDTree`1.CopyTo(Accord.MachineLearning.Structures.KDNodesTreeNode{`0}[],System.Int32)">
       <summary>
         Copies the entire tree to a compatible one-dimensional <see cref="T:System.Array" />, starting
         at the specified <paramref name="arrayIndex">index</paramref> of the
@@ -9191,10 +9191,10 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTree`1.Traverse(Accord.MachineLearning.Structures.KDTreeTraversalMethod{`0})">
+      name="M:Accord.MachineLearning.Structures.KDTree`1.Traverse(Accord.MachineLearning.Structures.KDNodesTreeTraversalMethod{`0})">
       <summary>
         Traverse the tree using a
-        <see cref="T:Accord.MachineLearning.Structures.KDTree`1.KDTreeTraversal">
+        <see cref="T:Accord.MachineLearning.Structures.KDTree`1.KDNodesTreeTraversal">
           tree traversal
           method
         </see>
@@ -9203,7 +9203,7 @@
 
       <param name="method">
         The tree traversal method. Common methods are
-        available in the <see cref="T:Accord.MachineLearning.Structures.KDTree`1.KDTreeTraversal" />static class.
+        available in the <see cref="T:Accord.MachineLearning.Structures.KDTree`1.KDNodesTreeTraversal" />static class.
       </param>
 
       <returns>
@@ -9281,7 +9281,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTree.#ctor(System.Int32,Accord.MachineLearning.Structures.KDTreeNode)">
+      name="M:Accord.MachineLearning.Structures.KDTree.#ctor(System.Int32,Accord.MachineLearning.Structures.KDNodesTreeNode)">
       <summary>
         Creates a new <see cref="T:Accord.MachineLearning.Structures.KDTree`1" />.
       </summary>
@@ -9291,7 +9291,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTree.#ctor(System.Int32,Accord.MachineLearning.Structures.KDTreeNode{System.Object})">
+      name="M:Accord.MachineLearning.Structures.KDTree.#ctor(System.Int32,Accord.MachineLearning.Structures.KDNodesTreeNode{System.Object})">
       <summary>
         Creates a new <see cref="T:Accord.MachineLearning.Structures.KDTree`1" />.
       </summary>
@@ -9301,7 +9301,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTree.#ctor(System.Int32,Accord.MachineLearning.Structures.KDTreeNode,System.Int32,System.Int32)">
+      name="M:Accord.MachineLearning.Structures.KDTree.#ctor(System.Int32,Accord.MachineLearning.Structures.KDNodesTreeNode,System.Int32,System.Int32)">
       <summary>
         Creates a new <see cref="T:Accord.MachineLearning.Structures.KDTree`1" />.
       </summary>
@@ -9313,7 +9313,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTree.#ctor(System.Int32,Accord.MachineLearning.Structures.KDTreeNode{System.Object},System.Int32,System.Int32)">
+      name="M:Accord.MachineLearning.Structures.KDTree.#ctor(System.Int32,Accord.MachineLearning.Structures.KDNodesTreeNode{System.Object},System.Int32,System.Int32)">
       <summary>
         Creates a new <see cref="T:Accord.MachineLearning.Structures.KDTree`1" />.
       </summary>
@@ -9529,7 +9529,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeNodeCollection`1.Add(Accord.MachineLearning.Structures.KDTreeNode{`0},System.Double)">
+      name="M:Accord.MachineLearning.Structures.KDTreeNodeCollection`1.Add(Accord.MachineLearning.Structures.KDNodesTreeNode{`0},System.Double)">
       <summary>
         Attempts to add a value to the collection. If the list is full
         and the value is more distant than the farthest node in the
@@ -9543,7 +9543,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeNodeCollection`1.AddFarthest(Accord.MachineLearning.Structures.KDTreeNode{`0},System.Double)">
+      name="M:Accord.MachineLearning.Structures.KDTreeNodeCollection`1.AddFarthest(Accord.MachineLearning.Structures.KDNodesTreeNode{`0},System.Double)">
       <summary>
         Attempts to add a value to the collection. If the list is full
         and the value is more distant than the farthest node in the
@@ -9557,7 +9557,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeNodeCollection`1.add(System.Double,Accord.MachineLearning.Structures.KDTreeNode{`0})">
+      name="M:Accord.MachineLearning.Structures.KDTreeNodeCollection`1.add(System.Double,Accord.MachineLearning.Structures.KDNodesTreeNode{`0})">
       <summary>
         Adds the specified item to the collection.
       </summary>
@@ -9596,7 +9596,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeNodeCollection`1.Contains(Accord.MachineLearning.Structures.KDTreeNodeDistance{`0})">
+      name="M:Accord.MachineLearning.Structures.KDTreeNodeCollection`1.Contains(Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0})">
       <summary>
         Determines whether this instance contains the specified item.
       </summary>
@@ -9612,7 +9612,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeNodeCollection`1.CopyTo(Accord.MachineLearning.Structures.KDTreeNodeDistance{`0}[],System.Int32)">
+      name="M:Accord.MachineLearning.Structures.KDTreeNodeCollection`1.CopyTo(Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0}[],System.Int32)">
       <summary>
         Copies the entire collection to a compatible one-dimensional <see cref="T:System.Array" />, starting
         at the specified <paramref name="arrayIndex">index</paramref> of the
@@ -9631,7 +9631,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeNodeCollection`1.Add(Accord.MachineLearning.Structures.KDTreeNodeDistance{`0})">
+      name="M:Accord.MachineLearning.Structures.KDTreeNodeCollection`1.Add(Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0})">
       <summary>
         Adds the specified item to this collection.
       </summary>
@@ -9640,7 +9640,7 @@
 
     </member>
     <member
-      name="M:Accord.MachineLearning.Structures.KDTreeNodeCollection`1.Remove(Accord.MachineLearning.Structures.KDTreeNodeDistance{`0})">
+      name="M:Accord.MachineLearning.Structures.KDTreeNodeCollection`1.Remove(Accord.MachineLearning.Structures.KDNodesTreeNodeDistance{`0})">
       <summary>
         Not supported.
       </summary>
@@ -9717,7 +9717,7 @@
       </value>
 
     </member>
-    <member name="T:Accord.MachineLearning.DecisionTrees.DecisionTreeTraversalMethod">
+    <member name="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTreeTraversalMethod">
       <summary>
         Tree enumeration method delegate.
       </summary>
@@ -9725,28 +9725,28 @@
       <returns>An enumerator traversing the tree.</returns>
 
     </member>
-    <member name="T:Accord.MachineLearning.DecisionTrees.DecisionTreeTraversal">
+    <member name="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTreeTraversal">
       <summary>
         Common traversal methods for n-ary trees.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.DecisionTreeTraversal.BreadthFirst(Accord.MachineLearning.DecisionTrees.DecisionNode)">
+      name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTreeTraversal.BreadthFirst(Accord.MachineLearning.DecisionNodesTrees.DecisionNode)">
       <summary>
         Breadth-first traversal method.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.DecisionTreeTraversal.DepthFirst(Accord.MachineLearning.DecisionTrees.DecisionNode)">
+      name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTreeTraversal.DepthFirst(Accord.MachineLearning.DecisionNodesTrees.DecisionNode)">
       <summary>
         Depth-first traversal method.
       </summary>
 
     </member>
     <member
-      name="M:Accord.MachineLearning.DecisionTrees.DecisionTreeTraversal.PostOrder(Accord.MachineLearning.DecisionTrees.DecisionNode)">
+      name="M:Accord.MachineLearning.DecisionTrees.DecisionNodesTreeTraversal.PostOrder(Accord.MachineLearning.DecisionNodesTrees.DecisionNode)">
       <summary>
         Post-order tree traversal method.
       </summary>

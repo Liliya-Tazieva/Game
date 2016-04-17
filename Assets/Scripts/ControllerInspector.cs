@@ -12,7 +12,7 @@ public class ControllerInspector : Editor {
         if (GUILayout.Button("A*")) {
             var controller = (Controller) target;
             var nodes = new List<Informer>();
-            foreach (var kdTreeNode in controller.Tree) {
+            foreach (var kdTreeNode in controller.NodesTree) {
                 nodes.Add(kdTreeNode.Value);
             }
             var from = nodes.Find(x => x.transform.position == controller.From);
@@ -30,7 +30,7 @@ public class ControllerInspector : Editor {
             controller.ShowPath = true;
             controller.ShowVisited = true;
             var nodes = new List<Informer>();
-            foreach (var kdTreeNode in controller.Tree) {
+            foreach (var kdTreeNode in controller.NodesTree) {
                 nodes.Add(kdTreeNode.Value);
             }
             nodes = nodes.Where(arg => arg.IsObstacle != true).ToList();

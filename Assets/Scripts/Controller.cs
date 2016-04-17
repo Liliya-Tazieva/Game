@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Accord.MachineLearning.Structures;
 using UnityEngine;
@@ -10,15 +9,15 @@ public class Controller : MonoBehaviour {
     public float Radius;
     public bool ShowVisited;
     public bool ShowPath;
-    public KDTree<Informer> Tree = new KDTree<Informer>(3);
+    public KDTree<Informer> NodesTree = new KDTree<Informer>(3);
 
     public void RegisterInformer(Informer informer) {
         var position = informer.transform.position;
-        Tree.Add(position.ToArray(), informer);
+        NodesTree.Add(position.ToArray(), informer);
     }
 
     public void GetNearest() {
-        var nearest = Tree.Nearest(From.ToArray(), Radius);
+        var nearest = NodesTree.Nearest(From.ToArray(), Radius);
         var aggregate = nearest.Aggregate("",
             (s, neibour) => string.Format("{1}\n{0}", s, neibour.Node.Value.gameObject.name));
         Debug.Log(aggregate);
@@ -35,7 +34,7 @@ public class Controller : MonoBehaviour {
         var observed = new List<Informer>();
         observed.Add(current);
         while (current != to && current != null) {
-            var query = Tree.Nearest(current.transform.position.ToArray(), radius).ToList();
+            var query = NodesTree.Nearest(current.transform.position.ToArray(), radius).ToList();
             query =
                 query.Where(
                     informer => informer != current && informer.IsObstacle != true && informer.Visited != (NodeState) 1)
@@ -62,12 +61,12 @@ public class Controller : MonoBehaviour {
         } else {
             var path = new List<Informer>();
             path.Add(current);
-            for (var i = 1; i < observed.Count; ++i) {
+            while (current!=from) {
                 var temp = current;
                 var tempFrom = temp.Metrics(from);
                 var flag = false;
                 foreach (var informer in  observed) {
-                    if (informer.Metrics(current) < 4.3 && informer.Visited == (NodeState) 1) {
+                    if (informer.Metrics(current) < 18.1 && informer.Visited == (NodeState) 1) {
                         var informerFrom = informer.Metrics(from);
                         if (tempFrom > informerFrom
                             || tempFrom <= informerFrom && flag == false) {
@@ -80,19 +79,47 @@ public class Controller : MonoBehaviour {
                     }
                 }
                 if (!flag) {
-                    observed.Find(x => x.transform.position==current.transform.position).Visited = (NodeState) 2;
-                    path.RemoveAt(path.Count-1);
+                    observed.Find(x => x.transform.position == current.transform.position).Visited = (NodeState)2;
+                    path.RemoveAt(path.Count - 1);
                     current = path[path.Count - 1];
                 } else {
                 path.Add(temp);
                 current = temp;
                 }
-                if (current == from) {
-                    break;
-                }
             }
+            bool loopflag = false;
+            Informer loopstart = null;
             for (var i = path.Count - 1; i >= 0; --i) {
-                finalPath.Add(path[i]);
+                int intersection = NodesTree.Nearest(path[i].transform.position.ToArray(), radius)
+                    .ToList().Intersect(path).ToList().Count;
+                if (intersection > 3) {
+                    if (!loopflag) {
+                        loopflag = true;
+                        int index;
+                        if (i < path.Count - 1) index = i + 1;
+                        else index = i;
+                        loopstart = path[index];
+                        finalPath.Remove(loopstart);
+                        Debug.Log("Loopstart: " + loopstart.transform.position);
+                    }
+                } else {
+                    int index;
+                    if (i > 0) index = i - 1;
+                    else index = i;
+                    if (NodesTree.Nearest(path[index].transform.position.ToArray(), radius)
+                        .ToList().Intersect(path).ToList().Count <= 3) {
+                        if (loopflag) {
+                            loopflag = false;
+                            var loopend = path[i];
+                            Debug.Log("Loopend: " + loopend.transform.position);
+                            var loopescape = Extensions.LoopEscape(loopstart, loopend, NodesTree);
+                            finalPath.AddRange(loopescape);
+                            loopstart = null;
+                        } else {
+                            finalPath.Add(path[i]);
+                        }
+                    }
+                }
             }
             if (ShowVisited) {
                 foreach (var t in observed) {

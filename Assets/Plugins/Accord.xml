@@ -2649,7 +2649,7 @@
       <returns>The node containing the added item.</returns>
 
     </member>
-    <member name="M:Accord.Collections.RedBlackTree`1.Add(Accord.Collections.RedBlackTreeNode{`0})">
+    <member name="M:Accord.Collections.RedBlackTree`1.Add(Accord.Collections.RedBlackNodesTreeNode{`0})">
       <summary>
         Adds a new item to the tree. If the element already
         belongs to this tree, no new element will be added.
@@ -2671,7 +2671,7 @@
 
     </member>
     <member
-      name="M:Accord.Collections.RedBlackTree`1.System#Collections#Generic#ICollection{Accord#Collections#RedBlackTreeNode{T}}#Remove(Accord.Collections.RedBlackTreeNode{`0})">
+      name="M:Accord.Collections.RedBlackTree`1.System#Collections#Generic#ICollection{Accord#Collections#RedBlackNodesTreeNode{T}}#Remove(Accord.Collections.RedBlackNodesTreeNode{`0})">
       <summary>
         Removes a node from the tree.
       </summary>
@@ -2695,7 +2695,7 @@
       </returns>
 
     </member>
-    <member name="M:Accord.Collections.RedBlackTree`1.Remove(Accord.Collections.RedBlackTreeNode{`0})">
+    <member name="M:Accord.Collections.RedBlackTree`1.Remove(Accord.Collections.RedBlackNodesTreeNode{`0})">
       <summary>
         Removes a node from the tree.
       </summary>
@@ -2707,7 +2707,7 @@
       </returns>
 
     </member>
-    <member name="M:Accord.Collections.RedBlackTree`1.CopyTo(Accord.Collections.RedBlackTreeNode{`0}[],System.Int32)">
+    <member name="M:Accord.Collections.RedBlackTree`1.CopyTo(Accord.Collections.RedBlackNodesTreeNode{`0}[],System.Int32)">
       <summary>
         Copies the nodes of this tree to an array, starting at a
         particular <paramref name="arrayIndex">array index</paramref>.
@@ -2773,7 +2773,7 @@
       </returns>
 
     </member>
-    <member name="M:Accord.Collections.RedBlackTree`1.Contains(Accord.Collections.RedBlackTreeNode{`0})">
+    <member name="M:Accord.Collections.RedBlackTree`1.Contains(Accord.Collections.RedBlackNodesTreeNode{`0})">
       <summary>
         Determines whether this tree contains the specified item.
       </summary>
@@ -2799,7 +2799,7 @@
 
     </member>
     <member
-      name="M:Accord.Collections.RedBlackTree`1.FindLessThanOrEqualTo(Accord.Collections.RedBlackTreeNode{`0},`0)">
+      name="M:Accord.Collections.RedBlackTree`1.FindLessThanOrEqualTo(Accord.Collections.RedBlackNodesTreeNode{`0},`0)">
       <summary>
         Finds the greatest point in the subtree rooted at <paramref name="node" />
         that is less than or equal to (&lt;=) <c>k</c>. In other words, finds either
@@ -2834,7 +2834,7 @@
       </returns>
 
     </member>
-    <member name="M:Accord.Collections.RedBlackTree`1.FindLessThan(Accord.Collections.RedBlackTreeNode{`0},`0)">
+    <member name="M:Accord.Collections.RedBlackTree`1.FindLessThan(Accord.Collections.RedBlackNodesTreeNode{`0},`0)">
       <summary>
         Finds the greatest point in the subtree rooted at <paramref name="node" />
         that is less than (&lt;) <c>k</c>. In other words, finds a number stored in
@@ -2866,7 +2866,7 @@
       </returns>
 
     </member>
-    <member name="M:Accord.Collections.RedBlackTree`1.FindGreaterThan(Accord.Collections.RedBlackTreeNode{`0},`0)">
+    <member name="M:Accord.Collections.RedBlackTree`1.FindGreaterThan(Accord.Collections.RedBlackNodesTreeNode{`0},`0)">
       <summary>
         Finds the smallest point in the subtree rooted at <paramref name="node" />
         that is greater than (>) <c>k</c>. In other words, finds a number stored in
@@ -2920,7 +2920,7 @@
       </returns>
 
     </member>
-    <member name="M:Accord.Collections.RedBlackTree`1.GetNextNode(Accord.Collections.RedBlackTreeNode{`0})">
+    <member name="M:Accord.Collections.RedBlackTree`1.GetNextNode(Accord.Collections.RedBlackNodesTreeNode{`0})">
       <summary>
         Gets the node that contains the next in-order value coming
         after the value contained in the given <paramref name="node" />.
@@ -2934,7 +2934,7 @@
       </returns>
 
     </member>
-    <member name="M:Accord.Collections.RedBlackTree`1.GetPreviousNode(Accord.Collections.RedBlackTreeNode{`0})">
+    <member name="M:Accord.Collections.RedBlackTree`1.GetPreviousNode(Accord.Collections.RedBlackNodesTreeNode{`0})">
       <summary>
         Gets the node that contains the previous in-order value coming
         before the value contained in the given <paramref name="node" />.
@@ -2948,7 +2948,7 @@
       </returns>
 
     </member>
-    <member name="M:Accord.Collections.RedBlackTree`1.Resort(Accord.Collections.RedBlackTreeNode{`0})">
+    <member name="M:Accord.Collections.RedBlackTree`1.Resort(Accord.Collections.RedBlackNodesTreeNode{`0})">
       <summary>
         Forces a re-balance of the tree by removing and inserting the same node.
       </summary>

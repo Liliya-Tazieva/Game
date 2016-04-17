@@ -13,7 +13,7 @@ public class TilesManager : MonoBehaviour {
         var index = -1;
         index = Colors.IndexOf(color);
         if (index == -1) {
-            index = 0;
+            return null;
         }
         return Prefabs[index];
     }
