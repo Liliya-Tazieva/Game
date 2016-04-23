@@ -2,10 +2,10 @@
 using UnityEngine;
 
 public class NavigationSphere : MonoBehaviour {
-    public Informer From;
+    public Vector3 From;
+    public Vector3 To;
     public float Height;
     public Collider Collider;
-    public Informer To;
 
     // Use this for initialization
     private void Start() {

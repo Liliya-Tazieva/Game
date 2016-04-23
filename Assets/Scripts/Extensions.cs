@@ -13,8 +13,13 @@ public static class Extensions {
         return metric;
     }
 
-    public static List<Informer> ToList(this KDTreeNodeList<Informer> l) {
-        return l.Select(informer => informer.Node.Value).ToList();
+    public static List<Node> ToList(this KDTreeNodeList<Informer> tree) {
+        var list = new List<Node>();
+        foreach (var node in tree) {
+            var value = new Node(node.Node.Value, NodeState.Undiscovered);
+            list.Add(value);
+        }
+        return list;
     }
 
     public static List<Informer> LoopEscape(Informer from, Informer to, KDTree <Informer> loop) {

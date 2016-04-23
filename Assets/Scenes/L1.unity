@@ -95,6 +95,7 @@ GameObject:
   - 4: {fileID: 108819661}
   - 114: {fileID: 108819662}
   - 114: {fileID: 108819660}
+  - 114: {fileID: 108819663}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -113,11 +114,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e13537cd18de9438095604daf4db11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  From: {x: 6, y: 0, z: 93}
-  To: {x: 69, y: 0, z: 45}
+  DebugManagerAStar: {fileID: 0}
+  From: {x: 63, y: 0, z: 15}
+  To: {x: 39, y: 0, z: 72}
   Radius: 5
-  ShowVisited: 1
-  ShowPath: 1
 --- !u!4 &108819661
 Transform:
   m_ObjectHideFlags: 0
@@ -141,8 +141,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39d5ca0371efdd741a4d89f4cd4c9669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Map: {fileID: 2800000, guid: b377d87ca9f0c7f4982ea983850982fa, type: 3}
+  Map: {fileID: 2800000, guid: 32f769f012f4e04418615a10e56722fd, type: 3}
   TilesM: {fileID: 597737353}
+--- !u!114 &108819663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 108819659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c667278a6705f4bb92ae423a84e71e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &597737352
 GameObject:
   m_ObjectHideFlags: 0

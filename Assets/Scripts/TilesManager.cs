@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class TilesManager : MonoBehaviour {
     public List<Color> Colors;
 
     public List<GameObject> Prefabs;
-
-    private void Start() {
-    }
 
     public GameObject GetPrefab(Color color) {
         var index = -1;
