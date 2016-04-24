@@ -2707,7 +2707,8 @@
       </returns>
 
     </member>
-    <member name="M:Accord.Collections.RedBlackTree`1.CopyTo(Accord.Collections.RedBlackNodesTreeNode{`0}[],System.Int32)">
+    <member
+      name="M:Accord.Collections.RedBlackTree`1.CopyTo(Accord.Collections.RedBlackNodesTreeNode{`0}[],System.Int32)">
       <summary>
         Copies the nodes of this tree to an array, starting at a
         particular <paramref name="arrayIndex">array index</paramref>.

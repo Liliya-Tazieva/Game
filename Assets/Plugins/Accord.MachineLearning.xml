@@ -6069,7 +6069,8 @@
 
       <param name="method">
         The tree traversal method. Common methods are
-        available in the <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.NodesTreeTraversal" />static class.
+        available in the <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.NodesTreeTraversal" />
+        static class.
       </param>
 
       <returns>
@@ -6091,7 +6092,8 @@
 
       <param name="method">
         The tree traversal method. Common methods are
-        available in the <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.NodesTreeTraversal" />static class.
+        available in the <see cref="T:Accord.MachineLearning.DecisionTrees.DecisionNodesTree.NodesTreeTraversal" />
+        static class.
       </param>
       <param name="subtree">The root of the subtree to be traversed.</param>
 
