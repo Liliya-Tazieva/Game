@@ -22,10 +22,12 @@ public enum NodeState {
 public class Node {
     public Informer InformerNode;
     public NodeState Visited;
+    public float Distance;
 
     public Node(Informer i, NodeState v) {
         InformerNode = i;
         Visited = v;
+        Distance = 0;
     }
 }
 
@@ -46,13 +48,6 @@ public class Controller : MonoBehaviour {
     public void RegisterInformer(Informer informer) {
         var position = informer.transform.position;
         NodesTree.Add(position.ToArray(), informer);
-    }
-
-    public void GetNearest() {
-        var nearest = NodesTree.Nearest(From.ToArray(), Radius);
-        var aggregate = nearest.Aggregate("",
-            (s, neibour) => string.Format("{1}\n{0}", s, neibour.Node.Value.gameObject.name));
-        Debug.Log(aggregate);
     }
 
     public void InitializeDebugInfo() {
@@ -77,14 +72,13 @@ public class Controller : MonoBehaviour {
             debugInformation = new DebugInformationA_Star() {
                 From = from,
                 To = to,
-                Observed = new List<Node>(),
-                FinalPath = new List<Informer>()
+                Observed = new List<Node>()
             };
         } else {
             debugInformation = null;
         }
         var current = new Node(from, NodeState.Processed);
-        current.InformerNode.Distance = current.InformerNode.Metrics(to);
+        current.Distance = current.InformerNode.Metrics(to);
         var observed = new List<Node> {current};
         // ReSharper disable once PossibleNullReferenceException
         while (current.InformerNode != null && current.InformerNode != to) {
@@ -92,25 +86,25 @@ public class Controller : MonoBehaviour {
             query =
                 query.Where(
                     informer => informer.InformerNode != current.InformerNode 
-                        && informer.InformerNode.IsObstacle != true && informer.Visited != (NodeState) 1)
+                        && informer.InformerNode.IsObstacle != true && informer.Visited != NodeState.Processed)
                     .ToList();
             foreach (var informer in query) {
                 if (informer.Visited == (NodeState) 2) {
-                    informer.InformerNode.Distance = informer.InformerNode.Metrics(to);
+                    informer.Distance = informer.InformerNode.Metrics(to);
                     informer.Visited = 0;
                     observed.Add(informer);
                 }
             }
-            observed = observed.OrderBy(arg => arg.Visited).ThenBy(arg => arg.InformerNode.Distance).ToList();
-            if (observed[0].Visited != (NodeState) 1) {
+            observed = observed.OrderBy(arg => arg.Visited).ThenBy(arg => arg.Distance).ToList();
+            if (observed[0].Visited != NodeState.Processed) {
                 current = observed[0];
-                observed[0].Visited = (NodeState) 1;
+                observed[0].Visited = NodeState.Processed;
                 if(debugInformation!=null)debugInformation.Observed.Add(observed[0]);
             } else {
                 current = null;
             }
         }
-        observed = observed.Where(informer => informer.Visited == (NodeState) 1).ToList();
+        observed = observed.Where(informer => informer.Visited == NodeState.Processed).ToList();
         var finalPath = new List<Informer>();
         if (current.InformerNode != to) {
             Debug.Log("No path was found");
@@ -121,13 +115,13 @@ public class Controller : MonoBehaviour {
                 var tempFrom = temp.InformerNode.Metrics(from);
                 var flag = false;
                 foreach (var informer in  observed) {
-                    if (informer.InformerNode.Metrics(current.InformerNode) < 18.1 && informer.Visited == (NodeState) 1) {
+                    if (informer.InformerNode.Metrics(current.InformerNode) < 18.1 && informer.Visited == NodeState.Processed) {
                         var informerFrom = informer.InformerNode.Metrics(from);
                         if (tempFrom > informerFrom
                             || tempFrom <= informerFrom && flag == false) {
                             if (flag) observed.Find(arg => arg.InformerNode.transform.position 
-                                == temp.InformerNode.transform.position).Visited = (NodeState) 1;
-                            informer.Visited = (NodeState) 2;
+                                == temp.InformerNode.transform.position).Visited = NodeState.Processed;
+                            informer.Visited = NodeState.Undiscovered;
                             temp = informer;
                             tempFrom = temp.InformerNode.Metrics(from);
                             flag = true;
@@ -143,7 +137,7 @@ public class Controller : MonoBehaviour {
                 }
             }
             bool loopflag = false;
-            Informer loopstart = null;
+            Node loopstart = null;
             for (var i = path.Count - 1; i >= 0; --i) {
                 int intersection = NodesTree.Nearest(path[i].InformerNode.transform.position.ToArray(), radius)
                     .ToList().Intersect(path).ToList().Count;
@@ -153,9 +147,9 @@ public class Controller : MonoBehaviour {
                         int index;
                         if (i < path.Count - 1) index = i + 1;
                         else index = i;
-                        loopstart = path[index].InformerNode;
-                        finalPath.Remove(loopstart);
-                        Debug.Log("Loopstart: " + loopstart.transform.position);
+                        loopstart = path[index];
+                        finalPath.Remove(loopstart.InformerNode);
+                        Debug.Log("Loopstart: " + loopstart.InformerNode.transform.position);
                     }
                 } else {
                     int index;
@@ -165,9 +159,9 @@ public class Controller : MonoBehaviour {
                         .ToList().Intersect(path).ToList().Count <= 3) {
                         if (loopflag) {
                             loopflag = false;
-                            var loopend = path[i].InformerNode;
-                            Debug.Log("Loopend: " + loopend.transform.position);
-                            var loopescape = Extensions.LoopEscape(loopstart, loopend, NodesTree);
+                            Node loopend = path[i];
+                            Debug.Log("Loopend: " + loopend.InformerNode.transform.position);
+                            var loopescape = Extensions.LoopEscape(loopstart, loopend, NodesTree, radius);
                             finalPath.AddRange(loopescape);
                             loopstart = null;
                         } else {
@@ -176,7 +170,9 @@ public class Controller : MonoBehaviour {
                     }
                 }
             }
-            debugInformation.FinalPath = finalPath;
+            if (debugInformation != null) {
+                debugInformation.FinalPath = finalPath;
+            }
             Debug.Log("Final Path:");
             foreach (var informer in finalPath) {
                 Debug.Log(informer.transform.name + " " + informer.transform.position);

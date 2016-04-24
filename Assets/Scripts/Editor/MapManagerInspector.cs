@@ -8,8 +8,8 @@ public class MapManagerInspector : Editor {
         base.OnInspectorGUI();
         if (GUILayout.Button("Redraw")) {
             var mapManager = target as MapManager;
-            var it = mapManager.InitializeMap();
-            it.MoveNext();
+            /*var it = mapManager.InitializeMap();
+            it.MoveNext();*/
         }
 
         if (GUILayout.Button("Clear")) {

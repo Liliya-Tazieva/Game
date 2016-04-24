@@ -8,23 +8,7 @@ public class PathRenderer : MonoBehaviour {
     public DebugInformationA_Star DebugInformation;
 
     public IEnumerator Start() {
-        yield return StartCoroutine("RendererPath");
-    }
-
-    public IEnumerator RendererPath() {
-        yield return A_StarDebug(DebugInformation.From, Show.From);
-        foreach (var informer in DebugInformation.Observed) {
-            if (informer.InformerNode != DebugInformation.From && informer.InformerNode != DebugInformation.To) {
-                yield return A_StarDebug(informer.InformerNode, Show.Observed);
-            }
-        }
-        yield return A_StarDebug(DebugInformation.To, Show.To);
-        foreach (var informer in DebugInformation.FinalPath) {
-            if (informer != DebugInformation.From && informer != DebugInformation.To) {
-                yield return A_StarDebug(informer, Show.Path);
-            }
-        }
-        Destroy(this);
+        yield return StartCoroutine("RenderPath");
     }
 
     // ReSharper disable once UnusedMethodReturnValue.Local
@@ -41,23 +25,38 @@ public class PathRenderer : MonoBehaviour {
         }
         yield return new WaitForSeconds(.2f);
     }
+
+    public IEnumerator RenderPath() {
+        yield return A_StarDebug(DebugInformation.From, Show.From);
+        foreach (var informer in DebugInformation.Observed) {
+            if (informer.InformerNode != DebugInformation.From && informer.InformerNode != DebugInformation.To) {
+                yield return A_StarDebug(informer.InformerNode, Show.Observed);
+            }
+        }
+        yield return A_StarDebug(DebugInformation.To, Show.To);
+        foreach (var informer in DebugInformation.FinalPath) {
+            if (informer != DebugInformation.From && informer != DebugInformation.To) {
+                yield return A_StarDebug(informer, Show.Path);
+            }
+        }
+        Destroy(this);
+    }
 }
 
 public class DebugManager : MonoBehaviour {
-    private List<DebugInformationA_Star> Paths = new List<DebugInformationA_Star>();  
-  
+    private readonly List<DebugInformationA_Star> _paths = new List<DebugInformationA_Star>();  
 
-    public void AddPath(DebugInformationA_Star dbi) {
-        Paths.Add(dbi);
+    public void AddPath(DebugInformationA_Star debugInformation) {
+        _paths.Add(debugInformation);
     }
 
     void Update() {
-        if (Paths.Any()) {
-            foreach (var path in Paths) {
-                var renderer = gameObject.AddComponent<PathRenderer>();
-                renderer.DebugInformation = path;
+        if (_paths.Any()) {
+            foreach (var path in _paths) {
+                var pathRenderer = gameObject.AddComponent<PathRenderer>();
+                pathRenderer.DebugInformation = path;
             }
-            Paths.Clear();
+            _paths.Clear();
         }
     }
 }

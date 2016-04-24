@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugManagerAStar: {fileID: 0}
   From: {x: 63, y: 0, z: 15}
-  To: {x: 39, y: 0, z: 72}
+  To: {x: 36, y: 0, z: 9}
   Radius: 5
 --- !u!4 &108819661
 Transform:

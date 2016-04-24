@@ -23,11 +23,6 @@ public class ControllerInspector : Editor {
             controller.DebugManagerAStar.AddPath(debugInformation);
         }
 
-        if (GUILayout.Button("Find neighbours")) {
-            var controller = (Controller) target;
-            controller.GetNearest();
-        }
-
         if (GUILayout.Button("Test")) {
             var controller = (Controller) target;
             var nodes = new List<Informer>();
