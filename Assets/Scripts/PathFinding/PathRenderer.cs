@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Assets.Scripts.Core;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -11,61 +13,81 @@ namespace Assets.Scripts.PathFinding {
         To = 3
     }
 
-    public class PathRenderer : MonoBehaviour {
-        private static Dictionary<Renderer, Color> DefaultColors = new Dictionary<Renderer, Color>();
+    public class PathRenderer: MonoBehaviour {
+        private class RendererUseInformer {
+            public Color DefaultColor;
+            public uint UseCount;
+        }
+
+        private static Dictionary<Renderer, RendererUseInformer> _defaultColors = new Dictionary<Renderer, RendererUseInformer>();
+        private readonly HashSet<Renderer> _usedRenderers = new HashSet<Renderer>();
+
         public DebugInformationAStar DebugInformation;
 
         public static void MapRebuild() {
-            DefaultColors = new Dictionary<Renderer, Color>();
+            _defaultColors = new Dictionary<Renderer, RendererUseInformer>();
         }
 
         [UsedImplicitly]
         private IEnumerator Start() {
-            yield return StartCoroutine("RendererPath");
+            yield return StartCoroutine( "RendererPath" );
         }
 
         [UsedImplicitly]
         public void OnDestroy() {
-            foreach (var pair in DefaultColors) {
-                pair.Key.material.SetColor("_Color", pair.Value);
-            }
+            _usedRenderers.ForEach( e => _defaultColors[e].UseCount-- );
+
+            _defaultColors
+                .Where( pair => pair.Value.UseCount == 0 )
+                .ForEach( pair => pair.Key.material.SetColor( "_Color", pair.Value.DefaultColor ) );
         }
 
         [UsedImplicitly]
         public IEnumerator RendererPath() {
-            yield return AStarDebug(DebugInformation.From, Show.From);
-            foreach (var informer in DebugInformation.Observed) {
-                if (informer.InformerNode != DebugInformation.From && informer.InformerNode != DebugInformation.To) {
-                    yield return AStarDebug(informer.InformerNode, Show.Observed);
+            yield return AStarDebug( DebugInformation.From, Show.From );
+            foreach ( var informer in DebugInformation.Observed ) {
+                if ( informer.InformerNode != DebugInformation.From && informer.InformerNode != DebugInformation.To ) {
+                    yield return AStarDebug( informer.InformerNode, Show.Observed );
                 }
             }
-            yield return AStarDebug(DebugInformation.To, Show.To);
-            foreach (var informer in DebugInformation.FinalPath) {
-                if (informer != DebugInformation.From && informer != DebugInformation.To) {
-                    yield return AStarDebug(informer, Show.Path);
+            yield return AStarDebug( DebugInformation.To, Show.To );
+            foreach ( var informer in DebugInformation.FinalPath ) {
+                if ( informer != DebugInformation.From && informer != DebugInformation.To ) {
+                    yield return AStarDebug( informer, Show.Path );
                 }
             }
-            Destroy(this);
+            Destroy( this );
         }
 
-        private static IEnumerator AStarDebug(Component informer, Show show) {
+        private IEnumerator AStarDebug( Component informer, Show show ) {
             var component = informer.GetComponent<Renderer>();
 
-            var color = component.material.GetColor("_Color");
-            if (!DefaultColors.ContainsKey(component)) {
-                DefaultColors.Add(component, color);
+            RendererUseInformer rendererInformer;
+
+            if ( !_defaultColors.TryGetValue( component, out rendererInformer ) ) {
+                var color = component.material.GetColor( "_Color" );
+
+                rendererInformer = new RendererUseInformer() {
+                    DefaultColor = color,
+                    UseCount = 1
+                };
+                _usedRenderers.Add( component );
+                _defaultColors.Add( component, rendererInformer );
+            } else if ( _usedRenderers.Add( component ) ) {
+                rendererInformer.UseCount++;
             }
 
-            if (show == Show.Observed) {
-                component.material.SetColor("_Color", Color.yellow);
-            } else if (show == Show.Path) {
-                component.material.SetColor("_Color", Color.red);
-            } else if (show == Show.From) {
-                component.material.SetColor("_Color", Color.cyan);
+
+            if ( show == Show.Observed ) {
+                component.material.SetColor( "_Color", Color.yellow );
+            } else if ( show == Show.Path ) {
+                component.material.SetColor( "_Color", Color.red );
+            } else if ( show == Show.From ) {
+                component.material.SetColor( "_Color", Color.cyan );
             } else {
-                component.material.SetColor("_Color", Color.magenta);
+                component.material.SetColor( "_Color", Color.magenta );
             }
-            yield return new WaitForSeconds(.01f);
+            yield return new WaitForSeconds( .01f );
         }
     }
 }

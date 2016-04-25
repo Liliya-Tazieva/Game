@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Accord.MachineLearning.Structures;
@@ -6,18 +7,24 @@ using UnityEngine;
 
 namespace Assets.Scripts.Core {
     public static class Extensions {
-        public static double[] ToArray(this Vector3 vec) {
-            return new double[] {vec.x, vec.y, vec.z};
+        public static void ForEach<T>( this IEnumerable<T> from, Action<T> callback ) {
+            foreach ( var element in from ) {
+                callback( element );
+            }
         }
 
-        public static float Metrics(this Informer from, Informer to) {
-            var metric = (to.transform.position - from.transform.position).sqrMagnitude;
+        public static double[] ToArray( this Vector3 vec ) {
+            return new double[] { vec.x, vec.y, vec.z };
+        }
+
+        public static float Metrics( this Informer from, Informer to ) {
+            var metric = ( to.transform.position - from.transform.position ).sqrMagnitude;
             return metric;
         }
 
-        public static List<Node> ToList(this KDTreeNodeList<Informer> tree) {
+        public static List<Node> ToList( this KDTreeNodeList<Informer> tree ) {
             return tree
-                .Select(node => new Node(node.Node.Value, NodeState.Undiscovered))
+                .Select( node => new Node( node.Node.Value, NodeState.Undiscovered ) )
                 .ToList();
         }
 
