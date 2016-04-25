@@ -3,14 +3,12 @@ using UnityEngine;
 
 namespace Assets.Scripts.PathFinding {
     public class Informer : MonoBehaviour {
-        public float Distance;
 
         [UsedImplicitly]
         public bool IsObstacle;
 
         [UsedImplicitly]
         public void Start() {
-            Distance = 0;
             var parent = transform.parent;
             while (parent != null) {
                 var controller = parent.GetComponent<Controller>();

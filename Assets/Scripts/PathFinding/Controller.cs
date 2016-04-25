@@ -74,7 +74,7 @@ namespace Assets.Scripts.PathFinding {
                 debugInformation = null;
             }
             var current = new Node(from, NodeState.Processed);
-            current.InformerNode.Distance = current.InformerNode.Metrics(to);
+            current.Distance = current.InformerNode.Metrics(to);
             var observed = new List<Node> {current};
             // ReSharper disable once PossibleNullReferenceException
 
@@ -83,19 +83,19 @@ namespace Assets.Scripts.PathFinding {
                 query =
                     query.Where(
                         informer => informer.InformerNode != current.InformerNode
-                                    && informer.InformerNode.IsObstacle != true && informer.Visited != (NodeState) 1)
+                                    && informer.InformerNode.IsObstacle != true && informer.Visited != NodeState.Processed )
                         .ToList();
                 foreach (var informer in query) {
                     if (informer.Visited == (NodeState) 2) {
-                        informer.InformerNode.Distance = informer.InformerNode.Metrics(to);
+                        informer.Distance = informer.InformerNode.Metrics(to);
                         informer.Visited = 0;
                         observed.Add(informer);
                     }
                 }
-                observed = observed.OrderBy(arg => arg.Visited).ThenBy(arg => arg.InformerNode.Distance).ToList();
-                if (observed[0].Visited != (NodeState) 1) {
+                observed = observed.OrderBy(arg => arg.Visited).ThenBy(arg => arg.Distance).ToList();
+                if ( observed[0].Visited != NodeState.Processed ) {
                     current = observed[0];
-                    observed[0].Visited = (NodeState) 1;
+                    observed[0].Visited = NodeState.Processed;
                     if (debugInformation != null) {
                         debugInformation.Observed.Add(observed[0]);
                     }
@@ -103,7 +103,7 @@ namespace Assets.Scripts.PathFinding {
                     current = null;
                 }
             }
-            observed = observed.Where(informer => informer.Visited == (NodeState) 1).ToList();
+            observed = observed.Where( informer => informer.Visited == NodeState.Processed ).ToList();
             var finalPath = new List<Informer>();
             if (current.InformerNode != to) {
                 Debug.LogError("No path was found");
@@ -140,7 +140,7 @@ namespace Assets.Scripts.PathFinding {
                     }
                 }
                 var loopflag = false;
-                Informer loopstart = null;
+                Node loopstart = null;
                 for (var i = path.Count - 1; i >= 0; --i) {
                     var intersection = NodesTree.Nearest(path[i].InformerNode.transform.position.ToArray(), radius)
                         .ToList().Intersect(path).ToList().Count;
@@ -153,8 +153,8 @@ namespace Assets.Scripts.PathFinding {
                             } else {
                                 index = i;
                             }
-                            loopstart = path[index].InformerNode;
-                            finalPath.Remove(loopstart);
+                            loopstart = path[index];
+                            finalPath.Remove( loopstart.InformerNode );
                             //Debug.Log("Loopstart: " + loopstart.transform.position);
                         }
                     } else {
@@ -168,9 +168,9 @@ namespace Assets.Scripts.PathFinding {
                             .ToList().Intersect(path).ToList().Count <= 3) {
                             if (loopflag) {
                                 loopflag = false;
-                                var loopend = path[i].InformerNode;
+                                var loopend = path[i];
                                 //Debug.Log("Loopend: " + loopend.transform.position);
-                                var loopescape = Extensions.LoopEscape(loopstart, loopend, NodesTree);
+                                var loopescape = Extensions.LoopEscape( loopstart, loopend, NodesTree, radius);
                                 finalPath.AddRange(loopescape);
                                 loopstart = null;
                             } else {

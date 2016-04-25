@@ -8,10 +8,12 @@
     public class Node {
         public readonly Informer InformerNode;
         public NodeState Visited;
+        public float Distance;
 
         public Node(Informer i, NodeState v) {
             InformerNode = i;
             Visited = v;
+            Distance = 0;
         }
     }
 }

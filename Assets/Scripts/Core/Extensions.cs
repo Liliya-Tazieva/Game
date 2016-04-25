@@ -21,21 +21,24 @@ namespace Assets.Scripts.Core {
                 .ToList();
         }
 
-        public static List<Informer> LoopEscape(Informer from, Informer to, KDTree<Informer> loop) {
+        public static List<Informer> LoopEscape( Node from, Node to, KDTree<Informer> nodesTree, float radius ) {
             var current = from;
-            current.Distance = current.Metrics(to);
-            var path = new List<Informer> {current};
-            while (current != to) {
-                var query = loop.Nearest(current.transform.position.ToArray(), 5)
-                    .Select(informer => informer.Node.Value).ToList()
-                    .Where(informer => informer.IsObstacle != true).ToList();
-                foreach (var informer in query) {
-                    informer.Distance = informer.Metrics(to);
+            current.Distance = current.InformerNode.Metrics( to.InformerNode );
+            var path = new List<Informer> { current.InformerNode };
+            while ( current.InformerNode != to.InformerNode ) {
+                var query = nodesTree.Nearest( current.InformerNode.transform.position.ToArray(), radius ).ToList();
+                query =
+                    query.Where(
+                        informer => informer.InformerNode != current.InformerNode
+                            && informer.InformerNode.IsObstacle != true )
+                        .ToList();
+                foreach ( var informer in query ) {
+                    informer.Distance = informer.InformerNode.Metrics( to.InformerNode );
                 }
-                query = query.Where(informer => informer.Distance < current.Distance)
-                    .ToList().OrderBy(informer => informer.Distance).ToList();
+                query = query.Where( informer => informer.Distance < current.Distance )
+                .ToList().OrderBy( informer => informer.Distance ).ToList();
                 current = query[0];
-                path.Add(current);
+                path.Add( current.InformerNode );
             }
             return path;
         }
