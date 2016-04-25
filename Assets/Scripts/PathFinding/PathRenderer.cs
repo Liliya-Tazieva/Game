@@ -65,7 +65,7 @@ namespace Assets.Scripts.PathFinding {
             } else {
                 component.material.SetColor("_Color", Color.magenta);
             }
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds(.01f);
         }
     }
 }

@@ -26,11 +26,6 @@ namespace Assets.Scripts.Editor.PathFinding {
                 controller.DebugManagerAStar.AddPath(debugInformation);
             }
 
-            if (GUILayout.Button("Find neighbours")) {
-                var controller = (Controller) target;
-                controller.GetNearest();
-            }
-
             if (GUILayout.Button("Test")) {
                 Test();
             }

@@ -12,13 +12,13 @@ namespace Assets.Scripts.PathFinding {
         [UsedImplicitly]
         public Vector3 From;
 
-        public KDTree<Informer> NodesTree = new KDTree<Informer>(3);
+        [UsedImplicitly]
+        public Vector3 To;
 
         [UsedImplicitly]
         public float Radius;
 
-        [UsedImplicitly]
-        public Vector3 To;
+        public KDTree<Informer> NodesTree = new KDTree<Informer>(3);
 
         public void RegisterInformer(Informer informer) {
             var position = informer.transform.position;
@@ -34,13 +34,6 @@ namespace Assets.Scripts.PathFinding {
                 }
             }
             NodesTree = newNodesTree;
-        }
-
-        public void GetNearest() {
-            var nearest = NodesTree.Nearest(From.ToArray(), Radius);
-            var aggregate = nearest.Aggregate("",
-                (s, neibour) => string.Format("{1}\n{0}", s, neibour.Node.Value.gameObject.name));
-            //Debug.Log(aggregate);
         }
 
         public void InitializeDebugInfo() {
@@ -63,6 +56,8 @@ namespace Assets.Scripts.PathFinding {
                 debugInformation = null;
                 return null;
             }
+            //Debug.Log("From: " + from.transform.position);
+            //Debug.Log("To: " + to.transform.position);
             if (debugFlag) {
                 debugInformation = new DebugInformationAStar {
                     From = from,
@@ -78,18 +73,20 @@ namespace Assets.Scripts.PathFinding {
             var observed = new List<Node> {current};
             // ReSharper disable once PossibleNullReferenceException
 
-            while (current.InformerNode != null && current.InformerNode != to) {
+            while (current.InformerNode != to) {
                 var query = NodesTree.Nearest(current.InformerNode.transform.position.ToArray(), radius).ToList();
                 query =
                     query.Where(
-                        informer => informer.InformerNode != current.InformerNode
-                                    && informer.InformerNode.IsObstacle != true && informer.Visited != NodeState.Processed )
+                        informer => informer.InformerNode.transform.position != current.InformerNode.transform.position
+                        && informer.InformerNode.IsObstacle != true)
                         .ToList();
                 foreach (var informer in query) {
-                    if (informer.Visited == (NodeState) 2) {
-                        informer.Distance = informer.InformerNode.Metrics(to);
-                        informer.Visited = 0;
-                        observed.Add(informer);
+                    if (
+                    !observed.Exists(
+                        arg => arg.InformerNode.transform.position == informer.InformerNode.transform.position)) {
+                    informer.Distance = informer.InformerNode.Metrics(to);
+                    informer.Visited = NodeState.Discovered;
+                    observed.Add(informer);
                     }
                 }
                 observed = observed.OrderBy(arg => arg.Visited).ThenBy(arg => arg.Distance).ToList();
@@ -100,14 +97,13 @@ namespace Assets.Scripts.PathFinding {
                         debugInformation.Observed.Add(observed[0]);
                     }
                 } else {
-                    current = null;
+                    Debug.LogError("No path was found");
+                    debugInformation = null;
+                    return null;
                 }
             }
             observed = observed.Where( informer => informer.Visited == NodeState.Processed ).ToList();
             var finalPath = new List<Informer>();
-            if (current.InformerNode != to) {
-                Debug.LogError("No path was found");
-            } else {
                 var path = new List<Node> {current};
                 while (current.InformerNode != from) {
                     var temp = current;
@@ -115,16 +111,16 @@ namespace Assets.Scripts.PathFinding {
                     var flag = false;
                     foreach (var informer in  observed) {
                         if (informer.InformerNode.Metrics(current.InformerNode) < 18.1 &&
-                            informer.Visited == (NodeState) 1) {
+                            informer.Visited == NodeState.Processed) {
                             var informerFrom = informer.InformerNode.Metrics(from);
                             if (tempFrom > informerFrom
                                 || tempFrom <= informerFrom && flag == false) {
                                 if (flag) {
                                     observed.Find(arg => arg.InformerNode.transform.position
                                                          == temp.InformerNode.transform.position).Visited =
-                                        (NodeState) 1;
+                                        NodeState.Processed;
                                 }
-                                informer.Visited = (NodeState) 2;
+                                informer.Visited = NodeState.Undiscovered;
                                 temp = informer;
                                 tempFrom = temp.InformerNode.Metrics(from);
                                 flag = true;
@@ -142,8 +138,14 @@ namespace Assets.Scripts.PathFinding {
                 var loopflag = false;
                 Node loopstart = null;
                 for (var i = path.Count - 1; i >= 0; --i) {
-                    var intersection = NodesTree.Nearest(path[i].InformerNode.transform.position.ToArray(), radius)
-                        .ToList().Intersect(path).ToList().Count;
+                    var neighbours = NodesTree.Nearest(path[i].InformerNode.transform.position.ToArray(), radius).ToList();
+                    var intersection = 0;
+                    foreach (var informer in neighbours) {
+                        if (
+                            path.Exists(
+                                arg => arg.InformerNode.transform.position == informer.InformerNode.transform.position))
+                            ++intersection;
+                    }
                     if (intersection > 3) {
                         if (!loopflag) {
                             loopflag = true;
@@ -155,7 +157,7 @@ namespace Assets.Scripts.PathFinding {
                             }
                             loopstart = path[index];
                             finalPath.Remove( loopstart.InformerNode );
-                            //Debug.Log("Loopstart: " + loopstart.transform.position);
+                            //Debug.Log("Loopstart: " + loopstart.InformerNode.transform.position);
                         }
                     } else {
                         int index;
@@ -164,12 +166,19 @@ namespace Assets.Scripts.PathFinding {
                         } else {
                             index = i;
                         }
-                        if (NodesTree.Nearest(path[index].InformerNode.transform.position.ToArray(), radius)
-                            .ToList().Intersect(path).ToList().Count <= 3) {
+                        intersection = 0;
+                        neighbours = NodesTree.Nearest(path[index].InformerNode.transform.position.ToArray(), radius).ToList();
+                        foreach (var informer in neighbours) {
+                            if (
+                                path.Exists(
+                                    arg => arg.InformerNode.transform.position == informer.InformerNode.transform.position))
+                                ++intersection;
+                        }
+                        if (intersection <= 3) {
                             if (loopflag) {
                                 loopflag = false;
                                 var loopend = path[i];
-                                //Debug.Log("Loopend: " + loopend.transform.position);
+                                //Debug.Log("Loopend: " + loopend.InformerNode.transform.position);
                                 var loopescape = Extensions.LoopEscape( loopstart, loopend, NodesTree, radius);
                                 finalPath.AddRange(loopescape);
                                 loopstart = null;
@@ -180,11 +189,10 @@ namespace Assets.Scripts.PathFinding {
                     }
                 }
                 debugInformation.FinalPath = finalPath;
-                //Debug.Log("Final Path:");
+                /*Debug.Log("Final Path:");
                 foreach (var informer in finalPath) {
-                    //Debug.Log(informer.transform.name + " " + informer.transform.position);
-                }
-            }
+                    Debug.Log(informer.transform.name + " " + informer.transform.position);
+                }*/
             return finalPath;
         }
     }
