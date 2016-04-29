@@ -97,7 +97,7 @@ namespace Assets.Scripts.PathFinding {
                         debugInformation.Observed.Add(observed[0]);
                     }
                 } else {
-                    Debug.LogError("No path was found");
+                    //Debug.LogError("No path was found");
                     debugInformation = null;
                     return null;
                 }
@@ -188,7 +188,9 @@ namespace Assets.Scripts.PathFinding {
                         }
                     }
                 }
+            if (debugInformation != null) {
                 debugInformation.FinalPath = finalPath;
+            }
                 /*Debug.Log("Final Path:");
                 foreach (var informer in finalPath) {
                     Debug.Log(informer.transform.name + " " + informer.transform.position);

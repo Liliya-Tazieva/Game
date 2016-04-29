@@ -77,7 +77,6 @@ namespace Assets.Scripts.PathFinding {
                 rendererInformer.UseCount++;
             }
 
-
             if ( show == Show.Observed ) {
                 component.material.SetColor( "_Color", Color.yellow );
             } else if ( show == Show.Path ) {
