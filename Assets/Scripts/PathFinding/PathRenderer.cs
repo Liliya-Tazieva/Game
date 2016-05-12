@@ -44,19 +44,21 @@ namespace Assets.Scripts.PathFinding {
 
         [UsedImplicitly]
         public IEnumerator RendererPath() {
-            yield return AStarDebug( DebugInformation.From, Show.From );
-            foreach ( var informer in DebugInformation.Observed ) {
-                if ( informer.InformerNode != DebugInformation.From && informer.InformerNode != DebugInformation.To ) {
-                    yield return AStarDebug( informer.InformerNode, Show.Observed );
+            if (DebugInformation != null) {
+                yield return AStarDebug(DebugInformation.From, Show.From);
+                foreach (var informer in DebugInformation.Observed) {
+                    if (informer.InformerNode != DebugInformation.From && informer.InformerNode != DebugInformation.To) {
+                        yield return AStarDebug(informer.InformerNode, Show.Observed);
+                    }
                 }
-            }
-            yield return AStarDebug( DebugInformation.To, Show.To );
-            foreach ( var informer in DebugInformation.FinalPath ) {
-                if ( informer != DebugInformation.From && informer != DebugInformation.To ) {
-                    yield return AStarDebug( informer, Show.Path );
+                yield return AStarDebug(DebugInformation.To, Show.To);
+                foreach (var informer in DebugInformation.FinalPath) {
+                    if (informer != DebugInformation.From && informer != DebugInformation.To) {
+                        yield return AStarDebug(informer, Show.Path);
+                    }
                 }
-            }
-            Destroy( this );
+            } else yield return null;
+            Destroy(this);
         }
 
         private IEnumerator AStarDebug( Component informer, Show show ) {

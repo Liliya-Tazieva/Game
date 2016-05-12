@@ -97,7 +97,7 @@ namespace Assets.Scripts.PathFinding {
                         debugInformation.Observed.Add(observed[0]);
                     }
                 } else {
-                    //Debug.LogError("No path was found");
+                    Debug.Log("No path was found");
                     debugInformation = null;
                     return null;
                 }
@@ -180,7 +180,9 @@ namespace Assets.Scripts.PathFinding {
                                 var loopend = path[i];
                                 //Debug.Log("Loopend: " + loopend.InformerNode.transform.position);
                                 var loopescape = Extensions.LoopEscape( loopstart, loopend, NodesTree, radius);
-                                finalPath.AddRange(loopescape);
+                                if (loopescape != null) {
+                                    finalPath.AddRange(loopescape);
+                                }
                                 loopstart = null;
                             } else {
                                 finalPath.Add(path[i].InformerNode);

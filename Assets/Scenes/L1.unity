@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugManagerAStar: {fileID: 108819663}
   From: {x: 18, y: 0, z: 60}
-  To: {x: 39, y: 0, z: 66}
+  To: {x: 81, y: 0, z: 54}
   Radius: 5
 --- !u!4 &108819661
 Transform:
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39d5ca0371efdd741a4d89f4cd4c9669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Map: {fileID: 2800000, guid: eddd124eeb32ad64eac602ca6848323f, type: 3}
+  Map: {fileID: 2800000, guid: 32f769f012f4e04418615a10e56722fd, type: 3}
   TilesM: {fileID: 597737353}
 --- !u!114 &108819663
 MonoBehaviour:
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Map: {fileID: 108819662}
-  AgentsAmount: 5
+  AgentsAmount: 10
   Agent: {fileID: 169230, guid: 1d8f003ab7655ff49941c7ea3252db78, type: 2}
 --- !u!4 &545747171
 Transform:

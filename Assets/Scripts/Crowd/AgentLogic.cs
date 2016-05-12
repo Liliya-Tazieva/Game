@@ -13,11 +13,13 @@ namespace Assets.Scripts.Agents {
         public Informer To;
         public float Speed;
         public float Height;
+        private bool Flag;
         [UsedImplicitly] public float HealthPoints;
 
         [UsedImplicitly]
         private void Start() {
             Collider = GetComponent<Collider>();
+            Flag = true;
         }
 
         public IEnumerator Go(List<Informer> path) {
@@ -40,20 +42,22 @@ namespace Assets.Scripts.Agents {
                     }
                     From = path[i];
                 }
+            if (From == To) {
+            }
         }
 
         [UsedImplicitly]
         private void Update() {
             if (From == To) {
+                Flag = true;
                 To = CrowdM.GetRandomInformer();
-                Debug.Log("From" + From.transform.position);
-                Debug.Log("To" + To.transform.position);
             } else {
                 var path = CrowdM.FindPath(From, To);
-                if (path != null) {
+                if (path != null && Flag) {
+                    Flag = false;
+                    //Debug.Log("Coroutine created");
                     StartCoroutine(Go(path));
-                } else {
-                    //From = To;
+                } else if (path == null) {
                     Destroy(transform.gameObject);
                 }
             }
