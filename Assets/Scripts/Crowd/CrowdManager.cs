@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Accord.Math;
 using Assets.Scripts.Agents;
 using Assets.Scripts.Map;
 using Assets.Scripts.PathFinding;
@@ -73,6 +74,13 @@ public class CrowdManager : MonoBehaviour {
                 agent.transform.position = new Vector3(agent.transform.position.x, agent.Height, agent.transform.position.z);
             }
         }
+    }
+
+    public void DestroyAgents() {
+        foreach (var agent in GetComponentsInChildren<AgentLogic>()) {
+            Destroy(agent.gameObject);
+        }
+        AgentsAmount = LevelComplexity/2;
     }
 
 	// Use this for initialization

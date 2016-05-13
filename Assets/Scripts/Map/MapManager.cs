@@ -33,7 +33,7 @@ namespace Assets.Scripts.Map {
         }
 
         [UsedImplicitly]
-        private IEnumerator Start() {
+        IEnumerator Start() {
 #if UNITY_EDITOR
             if (Application.isPlaying) {
                 yield return StartCoroutine("InitializeMap");

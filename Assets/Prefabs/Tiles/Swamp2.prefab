@@ -435,9 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f02e3a0ce8dca4499317ce00a2415f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Distance: 0
   IsObstacle: 0
-  Visited: 0
 --- !u!135 &13559568
 SphereCollider:
   m_ObjectHideFlags: 1
