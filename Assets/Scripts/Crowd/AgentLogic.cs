@@ -3,23 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.PathFinding;
 using JetBrains.Annotations;
+using Random = System.Random;
 using UnityEngine;
 
 namespace Assets.Scripts.Agents {
     public class AgentLogic : MonoBehaviour {
         public CrowdManager CrowdM;
+        public Rigidbody Rigidbody;
         public Collider Collider;
         public Informer From;
         public Informer To;
         public float Speed;
         public float Height;
-        private bool Flag;
+        public bool StopFlag;
+        private bool _flag;
         [UsedImplicitly] public float HealthPoints;
 
         [UsedImplicitly]
         private void Start() {
+            StopFlag = false;
+            Rigidbody = GetComponent<Rigidbody>();
+            Rigidbody.isKinematic = true;
             Collider = GetComponent<Collider>();
-            Flag = true;
+            Collider.isTrigger = true;
+            _flag = true;
         }
 
         public IEnumerator Go(List<Informer> path) {
@@ -46,19 +53,26 @@ namespace Assets.Scripts.Agents {
             }
         }
 
+        void OnTriggerEnter(Collider other) {
+            if (other.isTrigger) {
+                CrowdM.InstantiateAgentsCollision();
+            } 
+        }
+
         [UsedImplicitly]
         private void Update() {
-            if (From == To) {
-                Flag = true;
-                To = CrowdM.GetRandomInformer();
-            } else {
-                var path = CrowdM.FindPath(From, To);
-                if (path != null && Flag) {
-                    Flag = false;
-                    //Debug.Log("Coroutine created");
-                    StartCoroutine(Go(path));
-                } else if (path == null) {
-                    Destroy(transform.gameObject);
+            if (!StopFlag) {
+                if (From == To) {
+                    _flag = true;
+                    To = CrowdM.GetRandomInformer();
+                } else {
+                    var path = CrowdM.FindPath(From, To);
+                    if (path != null && _flag) {
+                        _flag = false;
+                        StartCoroutine(Go(path));
+                    } else if (path == null) {
+                        Destroy(transform.gameObject);
+                    }
                 }
             }
         }

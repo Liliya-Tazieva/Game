@@ -182,8 +182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Map: {fileID: 108819662}
-  AgentsAmount: 10
+  AgentsAmount: 5
   Agent: {fileID: 169230, guid: 1d8f003ab7655ff49941c7ea3252db78, type: 2}
+  LevelComplexity: 10
 --- !u!4 &545747171
 Transform:
   m_ObjectHideFlags: 0
