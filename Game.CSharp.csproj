@@ -78,7 +78,6 @@
     <Compile Include="Assets\Scripts\Core\Extensions.cs" />
     <Compile Include="Assets\Scripts\Crowd\AgentLogic.cs" />
     <Compile Include="Assets\Scripts\Crowd\CrowdManager.cs" />
-    <Compile Include="Assets\Scripts\Crowd\CrowdManagerInspector.cs" />
     <Compile Include="Assets\Scripts\GameMode\Game.cs" />
     <Compile Include="Assets\Scripts\GameMode\LevelOptions.cs" />
     <Compile Include="Assets\Scripts\Map\MapManager.cs" />

@@ -111,6 +111,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Editor\Crowd\CrowdManagerInspector.cs" />
     <Compile Include="Assets\Scripts\Editor\Map\MapManagerInspector.cs" />
     <Compile Include="Assets\Scripts\Editor\PathFinding\ControllerInspector.cs" />
   </ItemGroup>
