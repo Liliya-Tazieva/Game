@@ -17,7 +17,7 @@ public class CrowdManager : MonoBehaviour {
     private bool _instantiateFlag;
     public int LevelComplexity;
     public bool GameOver;
-    public bool LevelComplet;
+    public bool LevelComplete;
 
     public Informer GetRandomInformer() {
         var controller = Map.GetComponent<Controller>();
@@ -89,7 +89,7 @@ public class CrowdManager : MonoBehaviour {
 	void Start () {
 	    _instantiateFlag = true;
 	    GameOver = false;
-	    LevelComplet = false;
+	    LevelComplete = false;
 	}
 	
 	// Update is called once per frame
@@ -98,7 +98,7 @@ public class CrowdManager : MonoBehaviour {
             GameOver = true;
         }
         if (AgentsAmount == 0) {
-            LevelComplet = true;
+            LevelComplete = true;
         }
 	}
 }

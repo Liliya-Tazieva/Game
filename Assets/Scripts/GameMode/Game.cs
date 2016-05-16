@@ -73,8 +73,8 @@ public class Game : MonoBehaviour {
                 _level.CrowdManager.GameOver = false;
                 GetComponentInParent<ScreenManager>().GameIsOver();
                 DestroyCurrentLevel();
-            } else if (_level.CrowdManager.LevelComplet) {
-                _level.CrowdManager.LevelComplet = false;
+            } else if (_level.CrowdManager.LevelComplete) {
+                _level.CrowdManager.LevelComplete = false;
                 DestroyCurrentLevel();
 	            if (_currentLevel != Levels.Count - 1) {
                     GetComponentInParent<ScreenManager>().LevelCompleted();
