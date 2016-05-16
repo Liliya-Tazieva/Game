@@ -4,7 +4,6 @@ using Assets.Scripts.Agents;
 using System.Collections;
 
 public class LevelOptions : MonoBehaviour {
-    public Camera MainCamera;
     public TilesManager TilesManager;
     public MapManager MapManager;
     public CrowdManager CrowdManager;

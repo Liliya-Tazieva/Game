@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\PathFinding\Informer.cs" />
     <Compile Include="Assets\Scripts\PathFinding\Node.cs" />
     <Compile Include="Assets\Scripts\PathFinding\PathRenderer.cs" />
+    <Compile Include="Assets\Scripts\UI\ScreenManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\Accord.MachineLearning.xml" />
