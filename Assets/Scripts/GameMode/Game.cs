@@ -8,35 +8,16 @@ using UnityEngine.UI;
 public class Game : MonoBehaviour {
     public List<GameObject> Levels;
     private int _currentLevel;
-    private GameObject _levelInstanse;
-    private LevelOptions _level;
+    public GameObject LevelInstanse;
+    public LevelOptions Level;
     public float AgentsSpeed;
 
-    void OnGUI() {
-        if (GUI.Button(new Rect(10, 0, 100, 30), "Start")) {
-            StartGame();
-        }
-         if (GUI.Button(new Rect(10, 100, 100, 30), "Restart")) {
-             Restart();
-         }
-         if (GUI.Button(new Rect(10, 50, 100, 30), "Menu")) {
-             var camera = _levelInstanse.GetComponent<Camera>();
-             if (camera != null) {
-                 camera.enabled = false;
-             }
-             camera = GetComponentInParent<Camera>();
-             if (camera != null) {
-                 camera.enabled = false;
-             }
-         }
-    }
-
     public void InstantiateMap(Transform parent) {
-        if (_levelInstanse == null) {
-            _levelInstanse = Instantiate(Levels[_currentLevel], Vector3.zero, Quaternion.identity) as GameObject;
-            if (_levelInstanse != null) {
-                _levelInstanse.transform.SetParent(parent);
-                _level = _levelInstanse.GetComponent<LevelOptions>();
+        if (LevelInstanse == null) {
+            LevelInstanse = Instantiate(Levels[_currentLevel], Vector3.zero, Quaternion.identity) as GameObject;
+            if (LevelInstanse != null) {
+                LevelInstanse.transform.SetParent(parent);
+                Level = LevelInstanse.GetComponent<LevelOptions>();
             }
         }
     }
@@ -54,26 +35,22 @@ public class Game : MonoBehaviour {
     }
 
     public void StartGame() {
-        _level.CrowdManager.InstantiateAgents();
-    }
-
-    public void Restart() {
-        if (_level != null) {
-                _level.CrowdManager.DestroyAgents();
-                _level.CrowdManager.InstantiateAgents();
-            }
+        if (Level != null) {
+            Level.CrowdManager.DestroyAgents();
+            Level.CrowdManager.InstantiateAgents();
+        }
     }
 
     public void DestroyCurrentLevel() {
-        if (_level.CrowdManager != null) {
-            _level.CrowdManager.DestroyAgents();
+        if (Level.CrowdManager != null) {
+            Level.CrowdManager.DestroyAgents();
 
         }
-        DestroyImmediate(_levelInstanse.gameObject);
+        DestroyImmediate(LevelInstanse.gameObject);
     }
 
     public void PreviousLevel(bool flag) {
-        if (_level != null) {
+        if (Level != null) {
             DestroyCurrentLevel();
         }
         if (flag) {
@@ -92,7 +69,7 @@ public class Game : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (_levelInstanse != null) {
+	    if (LevelInstanse != null) {
             if (Input.GetButtonDown("Fire1")) {
                 RaycastHit hit;
                 var cam = FindObjectOfType<Camera>();
@@ -101,16 +78,16 @@ public class Game : MonoBehaviour {
                     var agent = hit.collider.gameObject;
                     if (agent.GetComponent<AgentLogic>() != null) {
                         Destroy(agent);
-                        _level.CrowdManager.AgentsAmount--;
+                        Level.CrowdManager.AgentsAmount--;
                     }
                 }
             }
-            if (_level.CrowdManager.GameOver) {
-                _level.CrowdManager.GameOver = false;
+            if (Level.CrowdManager.GameOver) {
+                Level.CrowdManager.GameOver = false;
                 FindObjectOfType<ScreenManager>().GameIsOver();
                 DestroyCurrentLevel();
-            } else if (_level.CrowdManager.LevelComplete) {
-                _level.CrowdManager.LevelComplete = false;
+            } else if (Level.CrowdManager.LevelComplete) {
+                Level.CrowdManager.LevelComplete = false;
                 DestroyCurrentLevel();
 	            if (_currentLevel != Levels.Count - 1) {
                     FindObjectOfType<ScreenManager>().LevelCompleted();

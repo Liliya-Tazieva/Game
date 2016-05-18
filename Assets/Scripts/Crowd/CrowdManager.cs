@@ -16,8 +16,11 @@ public class CrowdManager : MonoBehaviour {
     public GameObject Agent;
     private bool _instantiateFlag;
     public int LevelComplexity;
+    public int LevelCollisionAmount;
     public bool GameOver;
     public bool LevelComplete;
+    private int _startingAmount;
+    private int _amountOfCollisions;
 
     public Informer GetRandomInformer() {
         var controller = Map.GetComponent<Controller>();
@@ -44,6 +47,7 @@ public class CrowdManager : MonoBehaviour {
     }
 
     public void InstantiateAgentsCollision() {
+        ++_amountOfCollisions;
         if (_instantiateFlag) {
             InstantiateAgents(1);
             _instantiateFlag = false;
@@ -82,7 +86,7 @@ public class CrowdManager : MonoBehaviour {
         foreach (var agent in GetComponentsInChildren<AgentLogic>()) {
             DestroyImmediate(agent.gameObject);
         }
-        AgentsAmount = LevelComplexity/2;
+        AgentsAmount = _startingAmount;
     }
 
 	// Use this for initialization
@@ -90,11 +94,13 @@ public class CrowdManager : MonoBehaviour {
 	    _instantiateFlag = true;
 	    GameOver = false;
 	    LevelComplete = false;
+	    _startingAmount = AgentsAmount;
+	    _amountOfCollisions = 0;
 	}
 	
 	// Update is called once per frame
     void Update() {
-        if (AgentsAmount >= LevelComplexity) {
+        if (AgentsAmount >= LevelComplexity || _amountOfCollisions==LevelCollisionAmount) {
             GameOver = true;
         }
         if (AgentsAmount == 0) {
