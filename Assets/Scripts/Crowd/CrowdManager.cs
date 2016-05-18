@@ -72,7 +72,7 @@ public class CrowdManager : MonoBehaviour {
                 agent.From = from;
                 agent.To = to;
                 agent.CrowdM = this;
-                agent.Speed = 1.0f;
+                agent.Speed = FindObjectOfType<Game>().AgentsSpeed;
                 agent.transform.position = new Vector3(agent.transform.position.x, agent.Height, agent.transform.position.z);
             }
         }

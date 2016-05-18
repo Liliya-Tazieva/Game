@@ -10,6 +10,26 @@ public class Game : MonoBehaviour {
     private int _currentLevel;
     private GameObject _levelInstanse;
     private LevelOptions _level;
+    public float AgentsSpeed;
+
+    void OnGUI() {
+        if (GUI.Button(new Rect(10, 0, 100, 30), "Start")) {
+            StartGame();
+        }
+         if (GUI.Button(new Rect(10, 100, 100, 30), "Restart")) {
+             Restart();
+         }
+         if (GUI.Button(new Rect(10, 50, 100, 30), "Menu")) {
+             var camera = _levelInstanse.GetComponent<Camera>();
+             if (camera != null) {
+                 camera.enabled = false;
+             }
+             camera = GetComponentInParent<Camera>();
+             if (camera != null) {
+                 camera.enabled = false;
+             }
+         }
+    }
 
     public void InstantiateMap(Transform parent) {
         if (_levelInstanse == null) {
@@ -19,6 +39,18 @@ public class Game : MonoBehaviour {
                 _level = _levelInstanse.GetComponent<LevelOptions>();
             }
         }
+    }
+
+    public void SlowSpeed() {
+        AgentsSpeed = 0.5f;
+    }
+
+    public void MediumSpeed() {
+        AgentsSpeed = 0.85f;
+    }
+
+    public void FastSpeed() {
+        AgentsSpeed = 1.2f;
     }
 
     public void StartGame() {
@@ -41,7 +73,9 @@ public class Game : MonoBehaviour {
     }
 
     public void PreviousLevel(bool flag) {
-        DestroyCurrentLevel();
+        if (_level != null) {
+            DestroyCurrentLevel();
+        }
         if (flag) {
             if (_currentLevel != 0) _currentLevel--;
         } else {
@@ -52,7 +86,9 @@ public class Game : MonoBehaviour {
 	// Use this for initialization
     public void Start() {
         _currentLevel = 0;
-	}
+        AgentsSpeed = 0.85f;
+        //InstantiateMap(gameObject.transform);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -71,15 +107,15 @@ public class Game : MonoBehaviour {
             }
             if (_level.CrowdManager.GameOver) {
                 _level.CrowdManager.GameOver = false;
-                GetComponentInParent<ScreenManager>().GameIsOver();
+                FindObjectOfType<ScreenManager>().GameIsOver();
                 DestroyCurrentLevel();
             } else if (_level.CrowdManager.LevelComplete) {
                 _level.CrowdManager.LevelComplete = false;
                 DestroyCurrentLevel();
 	            if (_currentLevel != Levels.Count - 1) {
-                    GetComponentInParent<ScreenManager>().LevelCompleted();
+                    FindObjectOfType<ScreenManager>().LevelCompleted();
 	            } else {
-                    GetComponentInParent<ScreenManager>().GameCompleted();
+                    FindObjectOfType<ScreenManager>().GameCompleted();
 	            }
 	        }
 	    }
