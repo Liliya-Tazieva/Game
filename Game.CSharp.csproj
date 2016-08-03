@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\PathFinding\DebugManager.cs" />
     <Compile Include="Assets\Scripts\PathFinding\Informer.cs" />
     <Compile Include="Assets\Scripts\PathFinding\Node.cs" />
+    <Compile Include="Assets\Scripts\PathFinding\OnA_StarGUI.cs" />
     <Compile Include="Assets\Scripts\PathFinding\PathRenderer.cs" />
     <Compile Include="Assets\Scripts\UI\OnGameGUI.cs" />
     <Compile Include="Assets\Scripts\UI\ScreenManager.cs" />

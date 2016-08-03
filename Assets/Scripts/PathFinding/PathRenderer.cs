@@ -37,9 +37,12 @@ namespace Assets.Scripts.PathFinding {
         public void OnDestroy() {
             _usedRenderers.ForEach( e => _defaultColors[e].UseCount-- );
 
+            if (_defaultColors != null) {
+                
             _defaultColors
                 .Where( pair => pair.Value.UseCount == 0 )
                 .ForEach( pair => pair.Key.material.SetColor( "_Color", pair.Value.DefaultColor ) );
+            }
         }
 
         [UsedImplicitly]
